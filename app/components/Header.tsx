@@ -35,7 +35,7 @@ const Header:FC<Props> = ({activeItem}) =>{
             <Link href={"/"}
             className={`text-[25px] font-Poppins font-[500] text-black dark:text-white`}
             >
-            ELearning
+            ELearning Website
             </Link>
           </div>
           <div className="flex items-center">
