@@ -12,6 +12,7 @@ import { useSelector } from "react-redux";
 import avatar from "../images/149071.png";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
+// import { useSession, SessionProvider } from 'next-auth/react';
 import { useSocialAuthMutation } from "@/redux/features/auth/authApi";
 import toast from "react-hot-toast";
 type Props = {
@@ -20,7 +21,7 @@ type Props = {
   activeItem: number;
   route: string;
   setRoute: (route: string) => void;
-};
+}; 
 
 const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
   const [active, setActive] = useState(false);
