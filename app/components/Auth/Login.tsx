@@ -28,7 +28,7 @@ const Login:FC<Props>= ({setRoute,setOpen}) => {
         initialValues: {email:"", password:""},
         validationSchema:schema,
         onSubmit:async({email,password})=>{
-           await login({email,password})
+           await login({email,password});
         }
     });
 
@@ -43,12 +43,12 @@ const Login:FC<Props>= ({setRoute,setOpen}) => {
                 toast.error(errorData.data.message);
             }
         }
-    }, [isSuccess,error]);
+    }, [isSuccess,error,setOpen]);
 
     const {errors,touched,values,handleChange,handleSubmit}= formik;
 
   return (
-    <section className=' w-full'>
+    <div className=' w-full'>
        <h1 className={`${styles.title}`}>
             Login with ELearning
         </h1>
@@ -73,7 +73,7 @@ const Login:FC<Props>= ({setRoute,setOpen}) => {
                 <span className='text-red-500 pt-2 block'>{errors.email}</span>
             )}
 
-            <div className='w-full mt-5 relative mb-1'>
+            <div className='w-full mt-5 relative mb-1 dark:text-white text-black'>
             <label 
             className={`${styles.label}`}
             htmlFor="password">
@@ -92,12 +92,12 @@ const Login:FC<Props>= ({setRoute,setOpen}) => {
             {
                 !show ? (
                     <AiOutlineEyeInvisible
-                    className="absolute bottom-3 right-2 z-1 cursor-pointer"
+                    className="absolute bottom-3 right-2 z-1 cursor-pointer dark:text-white text-black"
                     size={20}
                     onClick={()=>setShow(true)} />
                 ):(
                     <AiOutlineEye
-                    className="absolute bottom-3 right-2 z-1 cursor-pointer"
+                    className="absolute bottom-3 right-2 z-1 cursor-pointer dark:text-white text-black"
                     size={20}
                     onClick={()=>setShow(false)} />
                 )
@@ -137,7 +137,7 @@ const Login:FC<Props>= ({setRoute,setOpen}) => {
 
     
 
-    </section>
+    </div>
   )
 }
 export default Login;

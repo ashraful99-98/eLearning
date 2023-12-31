@@ -25,7 +25,7 @@ export const apiSlice = createApi({
           const result = await queryFulfilled;
           dispatch(
             userLoggedIn({
-              accessToken: result.data.activationToken,
+              accessToken: result.data.accessToken,
               user: result.data.user,
             }),
           );

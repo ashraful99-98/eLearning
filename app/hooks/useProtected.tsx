@@ -1,6 +1,8 @@
 import { redirect } from "next/navigation";
 import React from "react";
-import UserAuth from "./userAuth";
+import UserAuth from "./UserAuth";
+
+
 
 interface ProtectedProps{
     children: React.ReactNode;

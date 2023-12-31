@@ -1,4 +1,4 @@
-"use client";
+'use client'
 import Link from "next/link";
 import React, { FC, useEffect, useState } from "react";
 import NavItems from "../utils/NavItems";
@@ -12,9 +12,9 @@ import { useSelector } from "react-redux";
 import avatar from "../images/149071.png";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
-// import { useSession, SessionProvider } from 'next-auth/react';
-import { useSocialAuthMutation } from "@/redux/features/auth/authApi";
-import toast from "react-hot-toast";
+import { useLogOutQuery, useSocialAuthMutation } from "@/redux/features/auth/authApi";
+import {toast} from "react-hot-toast";
+
 type Props = {
   open: boolean;
   setOpen: (open: boolean) => void;
@@ -33,8 +33,13 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
 
   const [socialAuth, { isSuccess, error }] = useSocialAuthMutation();
 
+  const [logout, setLogout] = useState(false);
+  const {} = useLogOutQuery(undefined,{
+      skip: !logout ? true : false,
+  });
+
   useEffect(() => {
-    if (user) {
+    if (!user) {
       if (data) {
         socialAuth({
           email: data?.user?.email,
@@ -43,14 +48,21 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
         });
       }
     }
-    if (isSuccess) {
-      toast.success("Login Successfully");
-    }
-  }, [data, user, isSuccess]);
+    if (data === null) {
+      if(isSuccess){
 
-  if (typeof window != "undefined") {
+        toast.success("Login Successfully");
+      }
+    }
+    if(data === null){
+      setLogout(true);
+
+    }
+  }, [data, user,socialAuth,isSuccess]);
+
+  if (typeof window !== "undefined") {
     window.addEventListener("scroll", () => {
-      if (window.scrollY > 80) {
+      if (window.scrollY > 85) {
         setActive(true);
       } else {
         setActive(false);
@@ -66,16 +78,16 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
   // console.log(user);
 
   return (
-    <div className="w-full relative">
+    <div className="w-full absolute">
       <div
-        className={`${
-          active
-            ? "dark:bg-opacity-50 dark:bg-gradient-to-b dark:from-gray-900 dark:to-black fixed top-0 left-0 w-full h-[80px] z-[80] transition duration-500"
-            : "w-full dark:bg-opacity-50 transition duration fixed z-[80]"
+      className={`${
+            active
+            ? "  dark:from-gray-900 dark:bg-opacity-50 dark:bg-gradient-to-b dark:to-black  h-[80px] from-white bg-gradient-to-t  to-slate-100 fixed top-0 left-0 w-full z-50 transition duration-500"
+            : " dark:from-gray-900 dark:bg-opacity-50 dark:bg-gradient-to-b dark:to-black  h-[80px] from-white bg-gradient-to-t  to-slate-100 fixed top-0 left-0 w-full z-50 transition duration-500"
         }`}
       >
-        <div className="w-[95%] 800px:w-[-92%] m-auto py-2 h-full">
-          <div className="w-full h-[80px] flex items-center justify-between p-3">
+        <div className="w-[95%] 800px:w-[92%] m-auto py-2 h-full ">
+          <div className="w-full h-full flex items-center justify-between p-3">
             <div>
               <Link
                 href={"/"}
@@ -87,28 +99,38 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
             <div className="flex items-center">
               <NavItems activeItem={activeItem} isMobile={false} />
               <ThemeSwitcher />
+
               {/* only for mobile  */}
+              
               <div className="800px:hidden">
                 <HiOutlineMenuAlt3
                   size={25}
                   className="cursor-pointer dark:text-white text-black"
                   onClick={() => setOpenSidebar(true)}
                 />
-              </div>
-              {user ? (
+             
+             
+               </div>
+
+               {user ? (
                 <Link href={"/profile"}>
-                  <Image
-                    src={user.avatar ? user.avatar : avatar}
-                    alt=""
-                    className="w-[30px] h-[30px] rounded-full cursor-pointer"
-                  />
+                <Image 
+                src={user.avatar ? user.avatar.url : avatar }
+                alt=""
+                width={30}
+                height={30}
+                className="w-[30px] h-[30px] rounded-full cursor-pointer"
+                style={{border: activeItem === 5 ? "2px solid #37a39a" : "none"}}
+                />
                 </Link>
+                
               ) : (
                 <HiOutlineUserCircle
                   size={25}
                   className="hidden 800px:block cursor-pointer dark:text-white text-black"
                   onClick={() => setOpen(true)}
                 />
+                
               )}
             </div>
           </div>
@@ -147,20 +169,25 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
           </div>
         )}
       </div>
-      {route === "Login" && (
-        <>
-          {open && (
-            <CustomModel
-              open={open}
-              setOpen={setOpen}
-              setRoute={setRoute}
-              activeItem={activeItem}
-              component={Login}
-            />
-          )}
-        </>
-      )}
-      {route === "Sign-Up" && (
+      {
+        route === "Login" && (
+          <>
+            {
+             open && (
+               <CustomModel
+                 open={open}
+                 setOpen={setOpen}
+                 setRoute={setRoute}
+                 activeItem={activeItem}
+                 component={Login}
+                />
+               )
+             }
+          </>
+        )
+      }
+      {
+        route === "Sign-Up" && (
         <>
           {open && (
             <CustomModel
@@ -173,7 +200,8 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
           )}
         </>
       )}
-      {route === "Verification" && (
+      {
+       route === "Verification" && (
         <>
           {open && (
             <CustomModel

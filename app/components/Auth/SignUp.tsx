@@ -7,6 +7,7 @@ import {FcGoogle} from "react-icons/fc";
 import { styles } from '../Styles/styles';
 import { useRegisterMutation } from '@/redux/features/auth/authApi';
 import toast from 'react-hot-toast';
+import { signIn } from 'next-auth/react';
 
 type Props = {
     setRoute:(route:string)=>void;
@@ -37,7 +38,7 @@ const SignUp:FC<Props>= ({setRoute}) => {
             }
         }
 
-    }, [isSuccess,error]);
+    }, [isSuccess,error,setRoute, data]);
 
     const formik = useFormik({
         initialValues: {name:"",email:"", password:""},
@@ -53,7 +54,7 @@ const SignUp:FC<Props>= ({setRoute}) => {
     const {errors,touched,values,handleChange,handleSubmit} = formik;
 
   return (
-    <section className=' w-full'>
+    <div className=' w-full'>
        <h1 className={`${styles.title}`}>
             Join to ELearning
         </h1>
@@ -118,12 +119,12 @@ const SignUp:FC<Props>= ({setRoute}) => {
             {
                 !show ? (
                     <AiOutlineEyeInvisible
-                    className="absolute bottom-3 right-2 z-1 cursor-pointer"
+                    className="absolute bottom-3 right-2 z-1 cursor-pointer dark:text-white text-black"
                     size={20}
                     onClick={()=>setShow(true)} />
                 ):(
                     <AiOutlineEye
-                    className="absolute bottom-3 right-2 z-1 cursor-pointer"
+                    className="absolute bottom-3 right-2 z-1 cursor-pointer dark:text-white text-black"
                     size={20}
                     onClick={()=>setShow(false)} />
                 )
@@ -147,8 +148,8 @@ const SignUp:FC<Props>= ({setRoute}) => {
                 Or join with
             </h5>
             <div className='flex items-center justify-center my-3'>
-                <FcGoogle size={30} className="cursor-pointer mr-2"/>
-                <AiFillGithub size={30} className="cursor-pointer mr-2 dark:text-white text-black"/>
+                <FcGoogle size={30} className="cursor-pointer mr-2" onClick={()=>signIn("google")}/>
+                <AiFillGithub size={30} className="cursor-pointer mr-2 dark:text-white text-black" onClick={()=>signIn("github")}/>
             </div>
             <h5 className='text-center pt-3 font-Poppins text-[14px] dark:text-white text-black'>
                 Already have an account?{""}
@@ -163,7 +164,7 @@ const SignUp:FC<Props>= ({setRoute}) => {
 
     
 
-    </section>
+    </div>
   )
 }
 export default SignUp;
