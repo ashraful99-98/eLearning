@@ -26,10 +26,14 @@ type Props = {
 const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
   const [active, setActive] = useState(false);
   const [openSidebar, setOpenSidebar] = useState(false);
+  // const { data } = useSession();
+
+
 
   const { user } = useSelector((state: any) => state.auth);
 
-  const { data } = useSession();
+
+  console.log(user);
 
   const [socialAuth, { isSuccess, error }] = useSocialAuthMutation();
 
@@ -38,27 +42,28 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
       skip: !logout ? true : false,
   });
 
-  useEffect(() => {
-    if (!user) {
-      if (data) {
-        socialAuth({
-          email: data?.user?.email,
-          name: data?.user?.name,
-          avatar: data?.user?.image,
-        });
-      }
-    }
-    if (data === null) {
-      if(isSuccess){
 
-        toast.success("Login Successfully");
-      }
-    }
-    if(data === null){
-      setLogout(true);
+  // useEffect(() => {
+  //   if (!user) {
+  //     if (data) {
+  //       socialAuth({
+  //         email: data?.user?.email,
+  //         name: data?.user?.name,
+  //         avatar: data?.user?.image,
+  //       });
+  //     }
+  //   }
+  //   if (data === null) {
+  //     if(isSuccess){
 
-    }
-  }, [data, user,socialAuth,isSuccess]);
+  //       toast.success("Login Successfully");
+  //     }
+  //   }
+  //   if(data === null){
+  //     setLogout(true);
+
+  //   }
+  // }, [data, user]);
 
   if (typeof window !== "undefined") {
     window.addEventListener("scroll", () => {

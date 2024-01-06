@@ -38,7 +38,7 @@ const SignUp:FC<Props>= ({setRoute}) => {
             }
         }
 
-    }, [isSuccess,error,setRoute, data]);
+    }, [isSuccess,error,data,setRoute]);
 
     const formik = useFormik({
         initialValues: {name:"",email:"", password:""},

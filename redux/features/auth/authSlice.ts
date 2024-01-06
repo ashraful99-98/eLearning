@@ -4,7 +4,7 @@ const initialState = {
   token: "",
   user: "",
 };
-
+ 
 const authSlice = createSlice({
   name: "auth",
   initialState,

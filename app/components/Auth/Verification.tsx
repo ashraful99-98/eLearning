@@ -21,9 +21,12 @@ const Verification:FC<Props> = ({setRoute}) => {
 
     const [activation ,{isSuccess,error}]= useActivationMutation();
 
+    const [invalidError,setInvalidError] = useState<boolean>(false);
+
     useEffect(()=>{
         if(isSuccess){
-            toast.success("Account activated successfully")
+            toast.success("Account activated successfully");
+            setRoute("Login");
         };
         if(error){
             if("data" in error){
@@ -35,10 +38,9 @@ const Verification:FC<Props> = ({setRoute}) => {
                 console.log('An error occured:', error);
             }
         }
-    },[isSuccess,error]);
+    },[isSuccess,error,setRoute]);
 
 
-    const [invalidErrro,setInvalidError] = useState<boolean>(false);
 
     const inputRefs = [
         useRef<HTMLInputElement>(null),
@@ -101,7 +103,7 @@ const Verification:FC<Props> = ({setRoute}) => {
                 <input type="number"
                 key={key}
                 ref={inputRefs[index]}
-                className={`w-[55px] h-[55px] bg-transparent border-[3px] rounded-[10px] flex items-center text-black dark:text-white justify-center text-[18px] font-Poppins outline-none text-center ${invalidErrro
+                className={`w-[55px] h-[55px] bg-transparent border-[3px] rounded-[10px] flex items-center text-black dark:text-white justify-center text-[18px] font-Poppins outline-none text-center ${invalidError
                 ? "shake border-red-500":"dark:border-white border-[#0000004a]"
                 }`}
                 placeholder=''

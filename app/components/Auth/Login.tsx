@@ -7,7 +7,7 @@ import {FcGoogle} from "react-icons/fc";
 import { styles } from '../Styles/styles';
 import { useLoginMutation } from '@/redux/features/auth/authApi';
 import toast from 'react-hot-toast';
-import { signIn } from 'next-auth/react';
+import { signIn } from "next-auth/react";
 
 type Props = {
     setRoute:(route:string)=>void;
@@ -27,10 +27,10 @@ const Login:FC<Props>= ({setRoute,setOpen}) => {
     const formik = useFormik({
         initialValues: {email:"", password:""},
         validationSchema:schema,
-        onSubmit:async({email,password})=>{
+        onSubmit:async ({email,password})=> {
            await login({email,password});
-        }
-    });
+        },
+    }); 
 
     useEffect(()=>{
         if(isSuccess){
@@ -133,9 +133,6 @@ const Login:FC<Props>= ({setRoute,setOpen}) => {
             </h5>
         </form>
         <br />
- 
-
-    
 
     </div>
   )
