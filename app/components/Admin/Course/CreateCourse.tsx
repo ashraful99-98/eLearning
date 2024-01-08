@@ -3,11 +3,12 @@ import React, { useState } from 'react'
 import CourseInformation from './CourseInformation';
 import CourseOptions from './CourseOptions';
 import CourseData from './CourseData';
+import CourseContent from './CourseContent';
 
 type Props = {}
 
 const CreateCourse = (props: Props) => {
-    const [active, setActive] = useState(0);
+    const [active, setActive] = useState(2);
     const [courseInfo, setCourseInfo] = useState({
         name: "",
         desceiption:"",
@@ -38,6 +39,11 @@ const CreateCourse = (props: Props) => {
     ]);
 
     const [courseData,setCourseData] = useState({});
+
+    const handleSubmit =async()=>{
+
+    }
+
   return (
 
     <div className='w-full flex min-h-screen'>
@@ -61,6 +67,18 @@ const CreateCourse = (props: Props) => {
                     setPrerequisites={setPrerequisites}
                     active={active}
                     setActive={setActive}
+                    />
+                )
+            }
+            {
+                active === 2 && (
+                    <CourseContent
+                    
+                    active={active}
+                    setActive={setActive}
+                    courseContentData={courseContentData}
+                    setCourseContentData={setCourseContentData}
+                    handleSubmit= {handleSubmit}
                     />
                 )
             }
