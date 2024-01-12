@@ -5,7 +5,7 @@ type Props = {
     courseInfo:any;
     setCourseInfo:(courseInfo:any)=>void;
     active:number;
-    setActive:(Active:number)=>void;
+    setActive:(active:number)=>void;
 
 }
 
@@ -87,7 +87,9 @@ className={`${styles.input}`}/>
           
           placeholder='Write somethings amazing...'
           value={courseInfo.description}
-          ></textarea>
+          onChange={(e:any)=> setCourseInfo({...courseInfo, description: e.target.value})}
+          />
+        
 
           </div>
           <br />
@@ -112,8 +114,8 @@ className={`${styles.input}`}/>
           name=''
           required
           value={courseInfo.estimatedPrice}
-          onChange={(e:any)=>setCourseInfo({...courseInfo, estimatedPrice: e.target.value})}
-          id='price'
+          onChange={(e:any)=>setCourseInfo({...courseInfo, estimatedPrice:e.target.value})}
+          id='estimatedPrice'
           placeholder='79'
           className={`${styles.input}`}
           />
