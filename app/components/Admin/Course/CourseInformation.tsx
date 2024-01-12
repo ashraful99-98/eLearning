@@ -86,7 +86,10 @@ className={`${styles.input}`}/>
           <textarea name="" id="" cols={30} rows={8} className={`${styles.input} !h-min !py-2 `}
           
           placeholder='Write somethings amazing...'
+
+          onChange={(e:any)=> setCourseInfo({...courseInfo, description:e.target.value})}
           value={courseInfo.description}
+
           ></textarea>
 
           </div>
