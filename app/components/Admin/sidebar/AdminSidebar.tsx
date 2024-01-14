@@ -209,19 +209,24 @@ const Sidebar = () => {
                         selected={selected}
                         setSelected={setSelected}
                     /> */}
-                    <div  className='flex' >
-                    <MdVideoCall />
+                    <div  className='flex pt-2' >
+                    <span className='mr-2'><MdVideoCall /></span>
 
                     <Link href="/admin/create-course"> Create Course</Link>
                     </div>
+                    <div  className='flex pt-2' >
+                    <span className='mr-2'><MdOndemandVideo /></span>
 
-                    <Item
+                    <Link href="/admin/courses"> Live Courses</Link>
+                    </div>
+
+                    {/* <Item
                         title='Live Courses'
                         to='/admin/courses'
                         icon={<MdOndemandVideo />}
                         selected={selected}
                         setSelected={setSelected}
-                    />
+                    /> */}
 
                     <Typography
                         variant='h5'
