@@ -179,13 +179,18 @@ const Sidebar = () => {
                         className='!text-[18px] text-black dark:text-[#ffffffc1] capitalize !font-[400]'>
                         {!isCollapsed && "Data"}</Typography>
 
-                    <Item
+                    {/* <Item
                         title='Users'
                         to='/admin/users'
                         icon={<MdGroups />}
                         selected={selected}
                         setSelected={setSelected}
-                    />
+                    /> */}
+                     <div  className='flex pt-2' >
+                    <span className='mr-2'><MdGroups /></span>
+
+                    <Link href="/admin/users">Users</Link>
+                    </div>
                     <Item
                         title='Invoices'
                         to='/admin/invoices'
