@@ -7,6 +7,7 @@ import AdminSidebar from "../../components/Admin/sidebar/AdminSidebar";
 import AllUsers from '@/app/components/Admin/Users/AllUsers'
 
 
+
 type Props = {}
 
 const page = (props: Props) => {
@@ -27,7 +28,7 @@ const page = (props: Props) => {
          </div>
          <div className='w-[85%] ml-8'>
               <DashboardHero/>
-              <AllUsers isTeam={false} />
+              <AllUsers isTeam={true}/>
 
          </div>
 

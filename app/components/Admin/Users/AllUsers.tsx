@@ -1,21 +1,67 @@
-import React from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import {DataGrid} from "@mui/x-data-grid";
-import {Box, Button} from "@mui/material";
+import {Box, Button, Modal} from "@mui/material";
 import { AiOutlineDelete, AiOutlineMail } from 'react-icons/ai';
-import {FiEdit2} from 'react-icons/fi';
 import { useTheme } from 'next-themes';
 import Loader from '../../Loader/Loader';
 import {format} from "timeago.js";
-import { useGetAllUsersQuery } from '@/redux/features/user/userApi';
+import { useDeleteUserMutation, useGetAllUsersQuery } from '@/redux/features/user/userApi';
+import { styles } from '../../Styles/styles';
+import toast from 'react-hot-toast';
 
-type Props = {}
+type Props = {
+    isTeam:boolean;
+}
 
-const AllCourses = (props: Props) => {
+const AllUsers:FC<Props> = ({isTeam}) => {
   const {theme, setTheme} = useTheme();
 
-  const {isLoading, data, error} = useGetAllUsersQuery({});
+  
+  const [active, setActive] = useState(false);
+  const [email,setEmail] = useState("");
+  const [role,setRole] = useState("admin");
+  const [open,setOpen] = useState(false);
+  const [userId,setUserId] = useState("");
+  // const [updateUserRole, {error: updateError, isSuccess}] = useUpdateUserRoleMutation();
 
+  const [deleteUser, {isSuccess: deleteSuccess, error:deleteError}] = useDeleteUserMutation({});
+  
+  const {isLoading, data,refetch} = useGetAllUsersQuery({}, {refetchOnMountOrArgChange:true});
 
+useEffect(() =>{
+  // if(updateError){
+  //   if("data" in updateError){
+  //     const errorMessage = updateError as any;
+  //     toast.error(errorMessage.data.message);
+  //   }
+  // }
+
+  // if(isSuccess){
+  //   refetch();
+  //   toast.success("User role updated successfully");
+  // }
+ 
+  if(deleteSuccess){
+    refetch();
+    toast.success("Delete user successfully");
+    setOpen(false);
+  }
+  if(deleteError){
+    if("data" in deleteError){
+      const errorMessage = deleteError as any;
+      toast.error(errorMessage.data.message);
+    }
+  }
+},[ deleteSuccess,deleteError]);
+
+// const handleSubmit = async ()=>{
+//   await updateUserRole(email, role);
+// }
+
+const handleDelete = async() =>{
+  const id = userId;
+  await deleteUser(id);
+}
 
   const columns = [
     {field: "id", headerName: "ID", flex: 0.3},
@@ -32,12 +78,16 @@ const AllCourses = (props: Props) => {
         return (
           <>
 
-          <a href={`mailto:${params.row.email}`}>
+          <Button 
+          onClick={()=>{
+            setOpen(!open);
+            setUserId(params.row.id);
+          }}>
             <AiOutlineDelete
             className="dark:text-white text-black"
             size={20}
             />
-          </a>
+          </Button>
           </>
         );
       },
@@ -49,12 +99,12 @@ const AllCourses = (props: Props) => {
       renderCell: (params:any)=>{
         return (
           <>
-          <Button>
+          <a href={`mailto:${params.row.email}`}>
             <AiOutlineMail
             className="dark:text-white text-black"
             size={20}
             />
-          </Button>
+          </a>
           </>
         );
       },
@@ -64,7 +114,20 @@ const AllCourses = (props: Props) => {
   const rows:any = [
  
   ];
-  {
+
+ if(isTeam){
+    const newData = data && data.users.filter((item:any)=> item.role === "admin")
+    newData && newData.forEach((item:any) => {
+      rows.push({
+      id: item._id,
+      name: item.name,
+      email: item.email,
+      role:item.role,
+      courses: item.courses.length,
+      created_at: format(item.createdAt),
+    });
+    });
+  }else{
     data && data.users.forEach((item:any) => {
       rows.push({
       id: item._id,
@@ -78,6 +141,8 @@ const AllCourses = (props: Props) => {
   }
 
 
+
+
   return (
     <div className='mt-[120px]'>
      {
@@ -85,6 +150,13 @@ const AllCourses = (props: Props) => {
         <Loader/>
       ):(
         <Box m="20px">
+            <div className="w-full flex justify-end">
+                <div className={`${styles.button} !w-[200px] dark:bg-[#37a39a] dark:border dark:border-[#ffffff6c] !h-[35px]`}
+                onClick={()=> setActive(!active)}>
+                    Add New Member
+
+                </div>
+            </div>
         <Box
         m="40px 0 0 0"
         height="80vh"
@@ -137,6 +209,37 @@ const AllCourses = (props: Props) => {
 
         </Box>
 
+        {
+          open && (
+            <Modal open={open}
+            onClose={()=> setOpen(!open)}
+            aria-labelledby="modal-modal-title"
+            aria-describedby ="modal-modal-description">
+
+              <Box className="absolute top-[50%] left-[50%] -translate-x-1/2 opacity-80 bg-slate-800 p-8 rounded  ">
+
+                <h1 className={`${styles.title}`}>Are you sure you want to delete this user?</h1>
+                <div className='flex w-full items-center justify-between mb-6 mt-2'>
+                  <div className={`${styles.button} !w-[120px] h-[30px] bg-[#37a39a]`}
+                  onClick={()=> setOpen(!open)}>
+
+                    Cancel
+
+                  </div>
+                  <div className={`${styles.button} !w-[120px] h-[30px] bg-[red]`}
+                  onClick={handleDelete}>
+                    Delete
+
+                  </div>
+
+                </div>
+
+              </Box>
+
+            </Modal>
+          )
+        }
+
       </Box>
       )
      }
@@ -145,4 +248,4 @@ const AllCourses = (props: Props) => {
     </div>
   )
 }
-export default AllCourses;
+export default AllUsers;

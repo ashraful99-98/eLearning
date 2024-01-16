@@ -9,6 +9,7 @@ type Props = {
   setActive: (active:number) => void;
   courseData : any;
   handleCourseCreate : any;
+  isEdit: boolean;
     
 }
 
@@ -16,7 +17,8 @@ const CoursePreview:FC<Props> = ({
   courseData,
   handleCourseCreate,
   setActive,
-  active
+  active,
+  isEdit,
 }) => {
 
   const discoutPercentenge = ((courseData?.estimatedPrice - courseData?.price)/ courseData?.estimatedPrice) * 100;
@@ -152,7 +154,9 @@ const CoursePreview:FC<Props> = ({
             <div className='w-full 800px:w-[180px] flex items-center justify-center h-[40px] bg-[#37a39a] text-center text-[#fff] rounded mt-8 cursor-pointer'
             onClick={()=> createCourse()}
             >
-              Create Course
+              {
+                isEdit ? "Update" : "Create"
+              }
 
 
             </div>

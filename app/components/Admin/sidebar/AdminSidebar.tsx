@@ -273,13 +273,19 @@ const Sidebar = () => {
                         {!isCollapsed && "Controllers"}
                     </Typography>
 
-                    <Item
+                    {/* <Item
                         title='Manage Team'
                         to='/admin/team'
                         icon={<MdPeopleOutline />}
                         selected={selected}
                         setSelected={setSelected}
-                    />
+                    /> */}
+
+                   <div  className='flex pt-2' >
+                    <span className='mr-2'><MdPeopleOutline /></span>
+
+                    <Link href="/admin/team">Manage Team</Link>
+                    </div>
 
                     <Typography
                         variant='h6'

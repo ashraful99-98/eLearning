@@ -68,15 +68,15 @@ const CourseInformation:FC<Props> = ({courseInfo, setCourseInfo, active, setActi
 
           <div>
           <label htmlFor="">Course Name</label>
-
-<input type="name"
-name=""
-required
-value={courseInfo.name}
-onChange={(e:any)=> setCourseInfo({...courseInfo, name:e.target.value})}
-id='name'
-placeholder='MERN stack ELearning platform with next 13' 
-className={`${styles.input}`}/>
+          <input type="name"
+                 name=""
+                 required
+                 value={courseInfo.name}
+                 onChange={(e:any)=> setCourseInfo({...courseInfo, name:e.target.value})}
+                 id='name'
+                 placeholder='MERN stack ELearning platform with next 13' 
+                 className={`${styles.input}`}/>
+          
           </div>
 
           <br />
@@ -102,13 +102,14 @@ className={`${styles.input}`}/>
           <input type="number"
           name=''
           required
-          onChange={(e:any)=>setCourseInfo({...courseInfo, price: e.target.value})}
+          value={courseInfo.price}
+          onChange={(e:any)=>setCourseInfo({...courseInfo, price:e.target.value})}
           id='price'
           placeholder='29'
           className={`${styles.input}`}
           />
-            </div>
-            <div className='w-[50%]'>
+          </div>
+          <div className='w-[50%]'>
                 
           <label htmlFor="" className={`${styles.label} w-[50%]`}>Estimated Price (optional)</label>
           <input type="number"
@@ -129,6 +130,7 @@ className={`${styles.input}`}/>
           <input type="text"
           required
           name=''
+          value={courseInfo.tags}
           onChange={(e:any)=> setCourseInfo({...courseInfo, tags: e.target.value})}
           id='tags'
           placeholder='MERN,Next 13, Socket,io, tailwind css'
