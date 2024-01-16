@@ -240,14 +240,19 @@ const Sidebar = () => {
                     >
                         {!isCollapsed && "Customization"}
                     </Typography>
-
+{/* 
                     <Item
                         title='Hero'
                         to='/admin/hero'
                         icon={<MdWeb />}
                         selected={selected}
                         setSelected={setSelected}
-                    />
+                    /> */}
+                     <div  className='flex pt-2' >
+                    <span className='mr-2'><MdWeb /></span>
+
+                    <Link href="/admin/hero">Hero</Link>
+                    </div>
 
                     <Item
                         title='FAQ'
