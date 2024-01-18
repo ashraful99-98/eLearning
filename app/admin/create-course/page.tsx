@@ -9,6 +9,7 @@ type Props = {}
 const page = (props: Props) => {
   return (
     <div>
+      
         <Heading
            title='ELearning - Admin'
            description='ELearning is a platform for students to learn and get help form teachers'

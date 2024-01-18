@@ -4,7 +4,7 @@ import AdminProtected from '@/app/hooks/adminProtected'
 import Heading from '@/app/utils/Heading'
 import React from 'react'
 import AdminSidebar from "../../components/Admin/sidebar/AdminSidebar";
-import EditHero from '../../components/Admin/Customization/EditHero';
+import EditFaq from '../../components/Admin/Customization/EditFaq';
 
 
 type Props = {}
@@ -29,7 +29,7 @@ const page = (props: Props) => {
               
               <DashboardHero/>
               
-              <EditHero/>
+              <EditFaq/>
 
          </div>
 

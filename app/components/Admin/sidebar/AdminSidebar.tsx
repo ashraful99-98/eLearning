@@ -254,21 +254,36 @@ const Sidebar = () => {
                     <Link href="/admin/hero">Hero</Link>
                     </div>
 
-                    <Item
+                    <div  className='flex pt-2' >
+                    <span className='mr-2'><MdQuiz /></span>
+
+                    <Link href="/admin/faq">FAQ</Link>
+                    </div>
+
+                    {/* <Item
                         title='FAQ'
                         to='/faq'
                         icon={<MdQuiz />}
                         selected={selected}
                         setSelected={setSelected}
-                    />
+                    /> */}
 
-                    <Item
+                    
+                    <div  className='flex pt-2' >
+                       <span className='mr-2'><MdWysiwyg /></span>
+
+                       <Link href="/admin/categories">Categories</Link>
+
+                    </div>
+
+
+                    {/* <Item
                         title='Categories'
                         to='/admin/categories'
                         icon={<MdWysiwyg />}
                         selected={selected}
                         setSelected={setSelected}
-                    />
+                    /> */}
 
                     <Typography
                         variant='h5'
