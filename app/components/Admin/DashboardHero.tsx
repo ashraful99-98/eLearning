@@ -1,12 +1,21 @@
 "use client"
-import React from 'react'
-import DashboardHeader from "./DashboardHeader"
-type Props = {}
+import React, { useState } from 'react'
+import DashboardHeader from "./DashboardHeader";
+import DeshboardWidgets from "../../components/Admin/Widgets/DeshboardWidgets";
+type Props = {
+  isDashboard?: boolean;
+}
 
-const DashboardHero = (props: Props) => {
+const DashboardHero = ({isDashboard}:Props) => {
+  const [open, setOpen] = useState(false);
   return (
     <div>
-      <DashboardHeader/>
+      <DashboardHeader open={open} setOpen={setOpen}/>
+      {
+        isDashboard && (
+          <DeshboardWidgets open={open}/>
+        )
+      }
     </div>
   )
 }
