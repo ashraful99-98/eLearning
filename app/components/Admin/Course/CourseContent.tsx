@@ -8,10 +8,10 @@ import toast from 'react-hot-toast';
 type Props = {
 
     active:number;
-    setActive : (active:number) => void;
+    setActive: (active:number) => void;
     courseContentData:any;
-    setCourseContentData:(courseContentData:any) =>void;
-    handleSubmit:any;
+    setCourseContentData:(courseContentData:any) => void;
+    handleSubmit: any;
 
 }
 
@@ -72,13 +72,13 @@ const CourseContent:FC<Props> = ({
                 title: "",
                 description : "",
                 videoSection : newVideoSection,
-                links : [{title: "", url:""}]
+                links : [{title: "", url:""}],
             };
 
             setCourseContentData([...courseContentData, newContent]);
 
         }
-    }
+    };
 
     const addNewSection = () =>{
         if(
@@ -91,7 +91,7 @@ const CourseContent:FC<Props> = ({
             toast.error("Please fill all the fields first!");
 
         }else{
-            setActiveSection(activeSection +1);
+            setActiveSection(activeSection + 1);
             const newContent = {
                 videoUrl : "",
                 title: "",
@@ -125,6 +125,7 @@ const CourseContent:FC<Props> = ({
         }
     };
 
+    console.log(courseContentData);
 
   return (
 
@@ -138,7 +139,7 @@ const CourseContent:FC<Props> = ({
 
                 return(
                     <>
-                    <div className={`w-full bg-[#cdcBc817] p-4 ${showSectionInput ? "mt-10" : "mb-0"}`}>
+                    <div className={`w-full bg-[#cdc8c817] p-4 ${showSectionInput ? "mt-10" : "mb-0"}`}>
 
                         {
                             showSectionInput && (
@@ -171,10 +172,11 @@ const CourseContent:FC<Props> = ({
                                     {
                                         item.title ? (
                                             <p className='font-Poppins dark:text-white text-black'>
-                                                {index + 1}. {item.title}
+                                                {index + 1} {item.title}
                                             </p>
-                                        ):<></>
-                                    }
+                                        ):(
+                                        <></>
+                                        )}
                                     
                                     </>
                                 ):(
@@ -190,7 +192,7 @@ const CourseContent:FC<Props> = ({
                                 className={`dark:text-white text-[20px] mr-2 text-black ${index > 0 ? "cursor-pointer" : "cursor-no-drop"}`}
 
                                 onClick={()=>{
-                                    if(index>0){
+                                    if(index > 0){
                                         const updatedData = [...courseContentData];
                                         updatedData.splice(index,1);
                                         setCourseContentData(updatedData);
@@ -239,6 +241,22 @@ const CourseContent:FC<Props> = ({
                                     }} />
 
                                 </div>
+
+                                <div className='my-3'>
+                                    <label htmlFor="" className={styles.label}>Video Length (in minutes)</label>
+
+                                    <input type="number"
+                                    placeholder='20'
+                                    className={`${styles.input}`}
+                                    value={item.videoLength}
+                                    onChange={(e)=>{
+                                        const updatedData = [...courseContentData];
+                                        updatedData[index].videoLength= e.target.value;
+                                        setCourseContentData(updatedData);
+                                    }} />
+
+                                </div>
+
                                 <div className='my-3'>
                                     <label htmlFor="" className={styles.label}>Video Description</label>
 
@@ -267,11 +285,12 @@ const CourseContent:FC<Props> = ({
                                                 <label className={styles.label}>
                                                     Link {linkIndex +1}
                                                 </label>
+
                                                 <AiOutlineDelete
                                                 className={`${linkIndex === 0
                                                 ? "cursor-no-drop" : "cursor-pointer"}
                                                 text-black dark:text-white text-[20px]`}
-                                                onClick={()=> linkIndex === 0 ? null : handleRemoveLink(index,linkIndex) }
+                                                onClick={()=> linkIndex === 0 ? null : handleRemoveLink(index, linkIndex) }
                                                 />
 
                                             </div>

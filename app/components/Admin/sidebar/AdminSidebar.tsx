@@ -9,6 +9,7 @@ import { useTheme } from 'next-themes';
 import { Box, IconButton,Typography } from '@mui/material';
 import { MdArrowBackIos, MdArrowForwardIos, MdBarChart, MdGroups, MdHome, MdManageHistory, MdOndemandVideo, MdOutlineMap, MdOutlineReceipt, MdPeopleOutline, MdQuiz, MdSettings, MdVideoCall, MdWeb, MdWysiwyg } from 'react-icons/md';
 import { AiOutlineLogout } from 'react-icons/ai';
+import { BiExit } from 'react-icons/bi';
 
 
 interface itemProps {
@@ -68,7 +69,7 @@ const Sidebar = () => {
             },
 
             "& .pro-inner-item:hover": {
-                color: "#86870fa !important",
+                color: "#868dfb !important",
             },
 
             "& .pro-menu-item.active": {
@@ -81,7 +82,7 @@ const Sidebar = () => {
             },
 
             "& .pro-menu-item": {
-                color: `${theme !== "dark" && "#000"}`,
+                color: `${theme !== "dark" && "#c3c7d4"}`,
             },
         }}
             className="!bg-white dark:bg-[#111C43]"
@@ -94,8 +95,8 @@ const Sidebar = () => {
             position:"absolute",
             top:0,
             left:0,
-            height:"100%",
-            width: isCollapsed ? "0%" : "18%",
+            height:"100vh",
+            width: isCollapsed ? "0%" : "16%",
         }}
         >
 
@@ -103,6 +104,7 @@ const Sidebar = () => {
 
                 <MenuItem
                     onClick={() => setIsCollapsed(!isCollapsed)}
+
                     icon={isCollapsed ? <MdArrowForwardIos /> : undefined}
                     style={{
                         margin: "10px 0 20px 0",
@@ -119,7 +121,7 @@ const Sidebar = () => {
                                 <h3 className='text-[20px] font-Poppins uppercase dark:text-white text-black'>ELearning</h3>
                             </Link>
                             <IconButton onClick={() => setIsCollapsed(!isCollapsed)} className='inline-block'>
-                                <MdArrowBackIos className="text-black dark:text-[#fffffc1]" />
+                                <MdArrowBackIos className="text-black dark:text-[#ffffffc1]" />
                             </IconButton>
                         </Box>
                     )}
@@ -134,9 +136,9 @@ const Sidebar = () => {
                         >
                             <Image
                                 alt='profile-user'
-                                width={95}
-                                height={95}
-                                src={user?.avatar ? user.avatar.url : avatarDefault}
+                                width={100}
+                                height={100}
+                                src={user.avatar ? user.avatar.url : avatarDefault}
                                 style={{
                                     cursor: "pointer",
                                     borderRadius: "50%",
@@ -144,6 +146,7 @@ const Sidebar = () => {
                                 }}
                             />
                         </Box>
+
                         <Box textAlign="center">
                             <Typography
                                 variant='h4'
@@ -152,6 +155,7 @@ const Sidebar = () => {
                             >
                                 {user?.name}
                             </Typography>
+
                             <Typography variant='h6'
                                 sx={{ m: "10px 0 0 0" }}
                                 className='!text-[18px] text-black dark:text-[#ffffffc1] capitalize'>
@@ -161,16 +165,23 @@ const Sidebar = () => {
                     </Box>
                 )}
 
-                <Box paddingLeft={isCollapsed ? undefined : "8%"} >
+                <Box paddingLeft={isCollapsed ? undefined : "10%"} >
                  
-                  <div className='flex'>
-        
-                  <Item title='Dashboard'
+                  {/* <Item title="Dashboard"
+                        to="/admin"
                         icon={<MdHome />}
-                        to='/admin'
                         selected={selected}
                         setSelected={setSelected}
-                    />
+                    /> */}
+                  <div className='flex'>
+        
+                     <div  className='flex pt-2' 
+                     
+                     >
+                    <span className='mr-2'><MdHome /></span>
+
+                    <Link href="/admin">Dashboard</Link>
+                    </div>
                   </div>
                    
 
@@ -179,20 +190,32 @@ const Sidebar = () => {
                         className='!text-[18px] text-black dark:text-[#ffffffc1] capitalize !font-[400]'>
                         {!isCollapsed && "Data"}</Typography>
 
-                    <Item
-                        title='Users'
-                        to='/admin/users'
-                        icon={<MdGroups />}
-                        selected={selected}
-                        setSelected={setSelected}
-                    />
-                    <Item
+                     <div  className='flex pt-2' >
+                    <span className='mr-2'><MdGroups /></span>
+                    
+                    <Link href="/admin/users">Users</Link>
+                </div>
+
+                {/* <Item
+                    title='Users'
+                    to="/admin/users"
+                    icon={<MdGroups />}
+                    selected={selected}
+                    setSelected={setSelected}
+                /> */}
+
+                    {/* <Item
                         title='Invoices'
                         to='/admin/invoices'
                         icon={<MdOutlineReceipt />}
                         selected={selected}
                         setSelected={setSelected}
-                    />
+                    /> */}
+                      <div  className='flex pt-2' >
+                    <span className='mr-2'><MdOutlineReceipt /></span>
+
+                    <Link href="/admin/invoices">Invoices</Link>
+                    </div>
 
                     <Typography
                         variant='h5'
@@ -209,19 +232,26 @@ const Sidebar = () => {
                         selected={selected}
                         setSelected={setSelected}
                     /> */}
-                    <div  className='flex' >
-                    <MdVideoCall />
+                    <div  className='flex pt-2' >
+                    <span className='mr-2'><MdVideoCall /></span>
 
                     <Link href="/admin/create-course"> Create Course</Link>
                     </div>
 
-                    <Item
+                    {/* <Item
                         title='Live Courses'
                         to='/admin/courses'
                         icon={<MdOndemandVideo />}
                         selected={selected}
                         setSelected={setSelected}
-                    />
+                    /> */}
+
+                    <div  className='flex pt-2' >
+                    <span className='mr-2'><MdOndemandVideo /></span>
+
+                    <Link href="/admin/courses"> Live Courses</Link>
+                    </div>
+
 
                     <Typography
                         variant='h5'
@@ -231,29 +261,51 @@ const Sidebar = () => {
                         {!isCollapsed && "Customization"}
                     </Typography>
 
-                    <Item
+                    {/* <Item
                         title='Hero'
                         to='/admin/hero'
                         icon={<MdWeb />}
                         selected={selected}
                         setSelected={setSelected}
-                    />
+                    /> */}
+                     <div  className='flex pt-2' >
+                    <span className='mr-2'><MdWeb /></span>
 
-                    <Item
+                    <Link href="/admin/hero">Hero</Link>
+                    </div>
+
+                    {/* <Item
                         title='FAQ'
                         to='/faq'
                         icon={<MdQuiz />}
                         selected={selected}
                         setSelected={setSelected}
-                    />
+                    /> */}
 
-                    <Item
+
+                    <div  className='flex pt-2' >
+                    <span className='mr-2'><MdQuiz /></span>
+
+                    <Link href="/admin/faq">FAQ</Link>
+                    </div>
+
+                    {/* <Item
                         title='Categories'
                         to='/admin/categories'
                         icon={<MdWysiwyg />}
                         selected={selected}
                         setSelected={setSelected}
-                    />
+                    /> */}
+
+                    
+                    <div  className='flex pt-2' >
+                       <span className='mr-2'><MdWysiwyg /></span>
+
+                       <Link href="/admin/categories">Categories</Link>
+
+                    </div>
+
+
 
                     <Typography
                         variant='h5'
@@ -262,14 +314,20 @@ const Sidebar = () => {
                     >
                         {!isCollapsed && "Controllers"}
                     </Typography>
-
+{/* 
                     <Item
                         title='Manage Team'
                         to='/admin/team'
                         icon={<MdPeopleOutline />}
                         selected={selected}
                         setSelected={setSelected}
-                    />
+                    /> */}
+
+                   <div  className='flex pt-2' >
+                    <span className='mr-2'><MdPeopleOutline /></span>
+
+                    <Link href="/admin/team">Manage Team</Link>
+                    </div>
 
                     <Typography
                         variant='h6'
@@ -279,29 +337,49 @@ const Sidebar = () => {
                         {!isCollapsed && "Analytics"}
                     </Typography>
 
-                    <Item
+                    {/* <Item
                         title='Courses Analytics'
                         to='/admin/courses-analytics'
                         icon={<MdBarChart />}
                         selected={selected}
                         setSelected={setSelected}
-                    />
+                    /> */}
+                     <div  className='flex pt-2' >
+                    <span className='mr-2'><MdBarChart /></span>
 
-                    <Item
+                    <Link href="/admin/courses-analytics">Courses Analytics</Link>
+                    </div>
+
+                    {/* <Item
                         title='Orders Analytics'
                         to='/admin/orders-analytics'
                         icon={<MdOutlineMap />}
                         selected={selected}
                         setSelected={setSelected}
-                    />
+                    /> */}
+                    
 
-                    <Item
+                    <div  className='flex pt-2' >
+                    <span className='mr-2'><MdOutlineMap /></span>
+
+                    <Link href="/admin/orders-analytics">Orders Analytics</Link>
+                    </div>
+
+
+
+                    
+                    {/* <Item
                         title='Users Analytics'
                         to='/admin/users-analytics'
                         icon={<MdManageHistory />}
                         selected={selected}
                         setSelected={setSelected}
-                    />
+                    /> */}
+                      <div  className='flex pt-2' >
+                    <span className='mr-2'><MdManageHistory /></span>
+
+                    <Link href="/admin/users-analytics">Users Analytics</Link>
+                    </div>
 
                     <Typography
                         variant='h6'
@@ -311,19 +389,24 @@ const Sidebar = () => {
                         {!isCollapsed && "Extras"}
                     </Typography>
 
-                    <Item
+                    {/* <Item
                         title='Settings'
                         to='/admin/settings'
                         icon={<MdSettings />}
                         selected={selected}
                         setSelected={setSelected}
-                    />
+                    /> */}
 
-                    <div className="w-full flex items-center px-3 py-4 cursor-pointer"
-                            onClick={()=>logoutHandler()}
+                    <div
+                     onClick={logoutHandler}
                        >
-                         <AiOutlineLogout size={20} className="text-black dark:text-white"/>
-                         <h5 className='pl-2 800px:block hidden font-Poppins dark:text-white text-black'>Logout</h5>
+                        <Item
+                        title='Logout'
+                        to='/'
+                        icon={<BiExit/>}
+                        selected={selected}
+                        setSelected={setSelected}
+                        />
 
                     </div>
                 </Box>

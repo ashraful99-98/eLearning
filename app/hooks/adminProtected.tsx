@@ -1,5 +1,4 @@
 import { redirect } from "next/navigation";
-import UserAuth from "./UserAuth"
 import React from "react";
 import { useSelector } from "react-redux";
 
