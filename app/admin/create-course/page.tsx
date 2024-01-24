@@ -5,10 +5,10 @@ import Heading from '@/app/utils/Heading';
 import CreateCourse from '../../components/Admin/Course/CreateCourse';
 import DashboardHeader from '@/app/components/Admin/DashboardHeader';
 type Props = {
-  setOpen: any;
+  
 }
 
-const page = ({ setOpen}: Props) => {
+const page = (props: Props) => {
   return (
     <div>
       
@@ -25,7 +25,7 @@ const page = ({ setOpen}: Props) => {
             </div>
 
             <div className='w-[83%]'>
-                <DashboardHeader setOpen={setOpen}/>
+                <DashboardHeader />
                 <CreateCourse/>
 
             </div>

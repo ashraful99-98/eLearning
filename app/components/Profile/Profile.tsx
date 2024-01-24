@@ -34,9 +34,9 @@ const Profile:FC<Props> = ({user}) => {
         });
     }
   return (
-    <div className='w-full h-full relative hero_animation hero_textColor  '>
+    <div className='w-full  relative hero_animation hero_textColor h-[97vh]  '>
 
-    <div className='w-[85%] h-full flex mx-auto'>
+    <div className='w-[85%] h-full flex mx-auto mt-4'>
         <div className={`w-[60px] 800px:w-[310px] h-[460px] dark:bg-slate-900 bg-gray-400 bg-opacity-90 border-2 dark:border-[#ffffff1d] border-[#ffffff16] rounded-[5px] dark:shadow-sm shadow-sm mt-[80px] mb-[80px] sticky ${scroll ? "top-[130px]" : "top-[30px]"}`}>
 
             <SideBarProfile
