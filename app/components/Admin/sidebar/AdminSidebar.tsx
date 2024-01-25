@@ -60,7 +60,8 @@ const Sidebar:FC<itemProps> = () => {
     };
 
     return (
-        <Box sx={{
+        <Box
+         sx={{
             "& .pro-sidebar-inner": {
                 background: `${
                     theme === "dark" ? "#111C43 !important" : "#f4f4f4 !important"
@@ -73,7 +74,7 @@ const Sidebar:FC<itemProps> = () => {
             "& .pro-inner-item:hover": {
                 color: "#868dfb !important",
             },
-
+            
             "& .pro-menu-item.active": {
                 color: "#6870fa !important",
             },
@@ -87,7 +88,7 @@ const Sidebar:FC<itemProps> = () => {
                 color: `${theme !== "dark" && "#000"}`,
             },
             "& .pro-icon":{
-                fontSize: "22px",
+                fontSize: "20px",
             }
         }}
             className="!bg-white dark:bg-[#111C43]"
@@ -341,7 +342,7 @@ const Sidebar:FC<itemProps> = () => {
                      onClick={logoutHandler}
                        >
                         <Item
-                        title='Logout'
+                        title='Exit'
                         to='/'
                         icon={<BiExit/>}
                         selected={selected}

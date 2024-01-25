@@ -20,11 +20,11 @@ export const userApi = apiSlice.injectEndpoints({
             }),
         }),
         updatePassword: builder.mutation({
-            query:({oldpassword,newPassword})=>({
+            query:({oldPassword,newPassword})=>({
                 url:"update-user-password",
                 method:"PUT",
                 body:{
-                    oldpassword,
+                    oldPassword,
                     newPassword
                 },
                 credentials: "include" as const,

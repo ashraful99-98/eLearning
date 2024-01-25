@@ -149,7 +149,7 @@ const EditHero:FC<Props> = (props: Props) => {
   <div className='w-full md:w-[60%] flex flex-col items-start text-center md:items-start md:text-left mt-8 md:mt-0'>
     <textarea
       placeholder='Improve Your Online Learning Experience Better Instantly'
-      className='dark:text-white resize-none text-[#00000c7] text-[24px] md:text-[38px] lg:text-[44px] py-2 w-full md:w-[80%] lg:w-full font-Poppins bg-transparent'
+      className='dark:text-white text-black resize-none text-[#00000c7] text-[24px] md:text-[38px] lg:text-[44px] py-2 w-full md:w-[80%] lg:w-full font-Poppins bg-transparent'
       value={title}
       onChange={(e) => setTitle(e.target.value)}
       rows={2}
@@ -159,7 +159,7 @@ const EditHero:FC<Props> = (props: Props) => {
 
     <textarea
       placeholder='We have 40k+ Online courses & 500k Online registered students. Find your desired course from them.'
-      className='dark:text-white resize-none text-[#00000c7] text-[16px] md:text-[24px] lg:text-[26px] py-2 w-full md:w-[74%] lg:w-[55%] font-Poppins bg-transparent'
+      className='dark:text-white text-black resize-none text-[#00000c7] text-[16px] md:text-[24px] lg:text-[26px] py-2 w-full md:w-[74%] lg:w-[55%] font-Poppins bg-transparent'
       value={subTitle}
       onChange={(e) => setSubTitle(e.target.value)}
       rows={4}
@@ -167,12 +167,12 @@ const EditHero:FC<Props> = (props: Props) => {
     <br />
 
     <div
-      className={`${styles.button} !w-[100px] !min-h-[40px] !h-[40px] dark:text-white text-black bg-[#cccccc34] ${
+      className={`${styles.button} !w-[100px] !min-h-[40px] !h-[40px] dark:text-white text-black dark:bg-[#cccccc34]  ${
         data?.layout?.banner?.title !== title ||
         data?.layout?.banner?.subTitle !== subTitle ||
         data?.layout?.banner?.image?.url !== image
           ? '!cursor-pointer !bg-[#42d383]'
-          : '!cursor-not-allowed'
+          : '!cursor-not-allowed !bg-slate-400'
       } !rounded absolute bottom-12 right-12`}
       onClick={
         data?.layout?.banner?.title !== title ||

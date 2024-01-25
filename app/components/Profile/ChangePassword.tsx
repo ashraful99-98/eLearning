@@ -22,7 +22,7 @@ const ChangePassword:FC<Props>= (props:Props) => {
        }
        else{
             
-            console.log(oldPassword,newPassword);
+            // console.log(oldPassword,newPassword);
             await updatePassword({oldPassword, newPassword});
         }
        

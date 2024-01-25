@@ -4,7 +4,6 @@ import { userLoggedIn, userLoggedOut, userRegistration } from "./authSlice";
 type RegistrationResponse = {
   message: string;
   activationToken: string;
-  // accessToken : string;
 };
 
 type RegistrationData = {};

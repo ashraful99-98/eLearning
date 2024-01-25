@@ -144,7 +144,7 @@ const handleDelete = async() =>{
 
 
   return (
-    <div className='mt-[120px]'>
+    <div className='mt-[120px] pb-[80px]'>
      {
       isLoading ? (
         <Loader/>

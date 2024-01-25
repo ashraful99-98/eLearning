@@ -26,12 +26,9 @@ type Props = {
 const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
   const [active, setActive] = useState(false);
   const [openSidebar, setOpenSidebar] = useState(false);
-  // const { data } = useSession();
-
-
+  const { data } = useSession();
 
   const { user } = useSelector((state: any) => state.auth);
-
 
   console.log(user);
 
@@ -60,11 +57,13 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
   //       toast.success("Login Successfully");
   //     }
   //   }
+
   //   if(data === null){
   //     setLogout(true);
 
   //   }
-  // }, [data, user]);
+  // }, [data, user, isSuccess]);
+
 
   if (typeof window !== "undefined") {
     window.addEventListener("scroll", () => {
@@ -121,6 +120,7 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
                {user ? (
                 <Link href={"/profile"}>
                 <Image 
+                // src={user.avatar ? user.avatar.url : avatar }
                 src={user.avatar ? user.avatar.url : avatar }
                 alt=""
                 width={30}
