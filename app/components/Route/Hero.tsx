@@ -3,10 +3,14 @@ import Link from "next/link";
 import React,{FC} from "react";
 import { BiSearch } from "react-icons/bi";
 import './Hero.css';
+import { useGetHeroDataQuery } from "@/redux/features/layout/layoutApi";
 
 type Props={};
 
 const Hero: FC<Props>=(props)=>{
+
+    const { data, refetch } = useGetHeroDataQuery("Banner",{});
+
 return(
 
     <div className="items-center hero-section relative  hero_animation hero_textColor pt-10 z-40 ">
@@ -15,20 +19,21 @@ return(
 
             <div className="w-[100%] h-[100%] pb-24 1000px:w-[40%] flex 1000px:min-h-screen items-center justify-end 1000px:pt-[0] z-1 div-img">
 
-                  <Image src={require("../../images/download.svg")} alt="" className="img-box" />
+                  <Image src={data?.layout?.banner?.image?.url} width={550}
+                  height={550} alt="" className="img-box" />
 
             </div>
 
             <div className="1000px:w-[60%] flex flex-col items-center 1000px:mt-[0px] text-center 1000px:text-left relative w-[100%] h-[100%] top-10 div-info z-0">
 
                 <h2 className="dark:text-white text-[#000000c7]  font-Josefin font-[600] text-[50px] 1500px:w-[55%] 1100px:w-[78]% ">
-                    Improve Your Online Learning Experience Better Instantly
+                {data?.layout?.banner?.title}
                 </h2>
 
                 <br />
 
                 <p className="dark:text-[#edfff4] text-[#000000ac] font-Josefin font-[600] text-[18px] 1500px:w-[55%] 1100px:w-[78]%">
-                    We have 40k+ Online course & 500k Online registered student. Find your desired Course from them.
+                {data?.layout?.banner?.subTitle}
                 </p>
 
                 <br />

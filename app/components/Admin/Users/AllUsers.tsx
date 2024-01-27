@@ -22,25 +22,12 @@ const AllUsers:FC<Props> = ({isTeam}) => {
   const [role,setRole] = useState("admin");
   const [open,setOpen] = useState(false);
   const [userId,setUserId] = useState("");
-  // const [updateUserRole, {error: updateError, isSuccess}] = useUpdateUserRoleMutation();
 
   const [deleteUser, {isSuccess: deleteSuccess, error:deleteError}] = useDeleteUserMutation({});
   
   const {isLoading, data,refetch} = useGetAllUsersQuery({}, {refetchOnMountOrArgChange:true});
 
 useEffect(() =>{
-  // if(updateError){
-  //   if("data" in updateError){
-  //     const errorMessage = updateError as any;
-  //     toast.error(errorMessage.data.message);
-  //   }
-  // }
-
-  // if(isSuccess){
-  //   refetch();
-  //   toast.success("User role updated successfully");
-  // }
- 
   if(deleteSuccess){
     refetch();
     toast.success("Delete user successfully");
@@ -53,10 +40,6 @@ useEffect(() =>{
     }
   }
 },[ deleteSuccess,deleteError]);
-
-// const handleSubmit = async ()=>{
-//   await updateUserRole(email, role);
-// }
 
 const handleDelete = async() =>{
   const id = userId;
@@ -150,13 +133,6 @@ const handleDelete = async() =>{
         <Loader/>
       ):(
         <Box m="20px">
-            <div className="w-full flex justify-end">
-                <div className={`${styles.button} !w-[200px] dark:bg-[#37a39a] dark:border dark:border-[#ffffff6c] !h-[35px]`}
-                onClick={()=> setActive(!active)}>
-                    Add New Member
-
-                </div>
-            </div>
         <Box
         m="40px 0 0 0"
         height="80vh"

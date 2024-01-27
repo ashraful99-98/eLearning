@@ -5,7 +5,7 @@ import { AiOutlineDelete, AiOutlineMail } from 'react-icons/ai';
 import { useTheme } from 'next-themes';
 import Loader from '../../Loader/Loader';
 import {format} from "timeago.js";
-import { useDeleteUserMutation, useGetAllUsersQuery } from '@/redux/features/user/userApi';
+import { useDeleteUserMutation, useGetAllUsersQuery, useUpdateUserRoleMutation } from '@/redux/features/user/userApi';
 import { styles } from '../../Styles/styles';
 import toast from 'react-hot-toast';
 
@@ -15,31 +15,30 @@ type Props = {
 
 const AllAdminTeam:FC<Props> = ({isTeam}) => {
   const {theme, setTheme} = useTheme();
-
-  
   const [active, setActive] = useState(false);
   const [email,setEmail] = useState("");
   const [role,setRole] = useState("admin");
   const [open,setOpen] = useState(false);
   const [userId,setUserId] = useState("");
-  // const [updateUserRole, {error: updateError, isSuccess}] = useUpdateUserRoleMutation();
+  const [updateUserRole, {error: updateError, isSuccess}] = useUpdateUserRoleMutation();
 
   const [deleteUser, {isSuccess: deleteSuccess, error:deleteError}] = useDeleteUserMutation({});
   
   const {isLoading, data,refetch} = useGetAllUsersQuery({}, {refetchOnMountOrArgChange:true});
 
 useEffect(() =>{
-  // if(updateError){
-  //   if("data" in updateError){
-  //     const errorMessage = updateError as any;
-  //     toast.error(errorMessage.data.message);
-  //   }
-  // }
+  if(updateError){
+    if("data" in updateError){
+      const errorMessage = updateError as any;
+      toast.error(errorMessage.data.message);
+    }
+  }
 
-  // if(isSuccess){
-  //   refetch();
-  //   toast.success("User role updated successfully");
-  // }
+  if(isSuccess){
+    refetch();
+    toast.success("User role updated successfully");
+    setActive(false);
+  }
  
   if(deleteSuccess){
     refetch();
@@ -52,11 +51,11 @@ useEffect(() =>{
       toast.error(errorMessage.data.message);
     }
   }
-},[ deleteSuccess,deleteError]);
+},[ deleteSuccess,deleteError, isSuccess, updateError]);
 
-// const handleSubmit = async ()=>{
-//   await updateUserRole(email, role);
-// }
+const handleSubmit = async ()=>{
+  await updateUserRole({email, role});
+}
 
 const handleDelete = async() =>{
   const id = userId;
@@ -151,13 +150,18 @@ const handleDelete = async() =>{
         <Loader/>
       ):(
         <Box m="20px">
-            <div className="w-full flex justify-end">
-                <div className={`${styles.button} !w-[200px] dark:bg-[#37a39a] dark:border dark:border-[#ffffff6c] !h-[35px]`}
-                onClick={()=> setActive(!active)}>
-                    Add New Member
-
-                </div>
-            </div>
+           {
+            isTeam && (
+              <div className="w-full flex justify-end">
+              <div className={`${styles.button} !w-[200px] dark:bg-[#37a39a] dark:border dark:border-[#ffffff6c] !h-[35px]`}
+              onClick={()=> {
+              setActive(!active);
+              }}>
+                  Add New Member
+              </div>
+          </div>
+            )
+           }
         <Box
         m="40px 0 0 0"
         height="80vh"
@@ -210,6 +214,45 @@ const handleDelete = async() =>{
 
         </Box>
 
+        {
+         active && (
+          <Modal open={active} onClose={() => setActive(!active)} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
+            <Box className="absolute top-[40%] left-[50%] -translate-x-1/2 dark:bg-[#1F2A40] bg-[#F2F0F0] ">
+              <h1 className={`${styles.title}`}>Add New Member</h1>
+              <div className='flex w-full items-center flex-col mb-6 mt-2 p-4 rounded'>
+                <form
+                //  onSubmit={handleSubmit}
+                 >
+                  <input
+                    type="email"
+                    name=""
+                    required
+                    onChange={()=> setEmail(email)}
+                    id='email'
+                    placeholder='Enter email..'
+                    className={`${styles.input} mb-2`}
+                  />
+                  <input
+                    type="role"
+                    name=""
+                    onChange={()=> setRole(role)}
+                    required
+                    id='role'
+                    placeholder='admin'
+                    className={`${styles.input} mb-4`}
+                  />
+                  <div className={`${styles.button} !w-[120px] h-[30px] bg-[#372ccf] `}
+                   onClick={handleSubmit}
+                   >
+                    Submit
+                  </div>
+                </form>
+              </div>
+            </Box>
+          </Modal>
+        )
+        }
+        
         {
           open && (
             <Modal open={open}
