@@ -70,10 +70,12 @@ export const reviews=[
 ]
 const Reviews = (props: Props) => {
   return (
-    <div className='w-[90%] 800px:w-[85%] m-auto'>
+    <div className='dark:bg-[#24244e] bg-[rgb(244,222,208)]'>
+
+    <div className='w-[90%] 800px:w-[85%] m-auto py-4'>
         <div className='w-full 800px:flex items-center'>
             <div className='800px:w-[50%] w-full'>
-                <Image src=""
+                <Image src={require("../../images/download (5).svg")} 
                 alt="" width={700} height={700}/>
             </div>
             <div className='800px:w-[50%] w-full'>
@@ -98,6 +100,7 @@ const Reviews = (props: Props) => {
 
             </div>
 
+    </div>
     </div>
   )
 }
