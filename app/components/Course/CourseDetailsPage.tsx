@@ -1,10 +1,12 @@
 import { useGetCoursesDetailsQuery } from '@/redux/features/courses/coursesApi';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Loader from '../Loader/Loader';
 import Heading from '@/app/utils/Heading';
 import Header from '../Header';
 import Footer from '../Footer/Footer';
 import CourseDetails from "./CourseDetails";
+import { useCreatePaymentIntentMutation, useGetStripePublishableKeyQuery } from '@/redux/features/orders/orderApi';
+import {loadStripe} from "@stripe/stripe-js";
 type Props = {
     id:string;
 }
@@ -13,6 +15,36 @@ const CourseDetailsPage = ({id}: Props) => {
     const [route, setRoute] = useState("Login");
     const [open, setOpen] = useState(false);
     const {data, isLoading} = useGetCoursesDetailsQuery(id);
+    const {data: config} = useGetStripePublishableKeyQuery({});
+    const [createPaymentIntent, {data: paymentIntentData}] = useCreatePaymentIntentMutation();
+    const [stripePromis, setStripePromis] = useState<any>(null);
+    const [clientSecret, setClientSecret]= useState('');
+
+    useEffect(()=>{
+
+        if(config){
+            const publishableKey = config?.publishableKey;
+
+            setStripePromis(loadStripe(publishableKey));
+        }
+
+        if(data){
+            const amount = Math.round(data.course.price * 100);
+
+            createPaymentIntent(amount);
+        }
+
+    },[config, data]);
+
+    useEffect(()=>{
+
+        if(paymentIntentData){
+            setClientSecret(paymentIntentData?.client_secret);
+        }
+    },[paymentIntentData]);
+
+
+
   return (
     <>
     {
@@ -34,8 +66,12 @@ const CourseDetailsPage = ({id}: Props) => {
                 setOpen={setOpen}
                 activeItem={1}
                 />
-                <CourseDetails
-                data={data.course}/>
+                {
+                    stripePromis && (
+                        <CourseDetails
+                data={data.course} stripePromis={stripePromis} clientSecret={clientSecret}/>
+                    )
+                }
                 <Footer/>
             </div>
 

@@ -94,7 +94,7 @@ const CourseContentList:FC<Props> = (props) => {
                                                 key={item._id}
                                                 onClick={()=> props.isDemo ? null : props?.setActiveVideo(videoIndex)}>
 
-                                                    <div className=' flex items-start'>
+                                                    <div className=' flex items-start dark:text-white text-black'>
                                                         <div>
                                                             <MdOutlineOndemandVideo size={25}
                                                             

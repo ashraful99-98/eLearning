@@ -2,18 +2,27 @@ import CoursePlayer from '@/app/utils/CoursePlayer'
 import Ratings from '@/app/utils/Ratings'
 import Link from 'next/link'
 
-import React from 'react'
-import { IoMdCheckmarkCircleOutline } from 'react-icons/io'
+import React, { useState } from 'react'
+import { IoMdCheckmarkCircleOutline, IoMdCloseCircleOutline } from 'react-icons/io'
 import { useSelector } from 'react-redux'
 import { format } from 'timeago.js'
 import { styles } from '../Styles/styles'
-import CourseContentList from '../Course/CourseContentList'
+import CourseContentList from '../Course/CourseContentList';
+
+import CheckOutFrom from "../Payment/CheckOutFrom";
+import {Elements} from "@stripe/react-stripe-js";
+import { useLoadUserQuery } from '@/redux/features/api/apiSlice'
 type Props = {
-    data:any
+    data:any;
+    stripePromis:any;
+    clientSecret:string;
 }
 
-const CourseDetails = ({data}: Props) => {
-  const {user} = useSelector((state:any)=> state.auth);
+const CourseDetails = ({data, stripePromis,clientSecret}: Props) => {
+  // const {user} = useSelector((state:any)=> state.auth);
+  const {data:userData} = useLoadUserQuery(undefined,{});
+  const user = userData?.user;
+  const [open, setOpen] = useState(false);
   const discountPercentenge = (
     (data?.estimatedPrice - data.price)/data?.estimatedPrice) * 100;
 
@@ -23,8 +32,8 @@ const CourseDetails = ({data}: Props) => {
    const isPurchased = user && user?.courses?.find((item:any)=> item._id === data._id);
 
    const handleOrder = (e:any)=>{
-    console.log('gggg');
-   }
+    setOpen(true);
+   };
 
   return (
     <div>
@@ -149,7 +158,7 @@ const CourseDetails = ({data}: Props) => {
           </div>
 
         <div className=' w-full 800px:w-[35%] relative'>
-          <div className=' sticky top-[100px] 800px:top-[150px] left-0 z-[-50] w-[110%]'>
+          <div className=' sticky top-[100px] 800px:top-[150px] left-0 z-[10] w-[110%]'>
             <CoursePlayer
             videoUrl={data?.demoUrl}
             title={data?.title}
@@ -174,14 +183,15 @@ const CourseDetails = ({data}: Props) => {
                   Enter to Course
                 </Link>
               ):(
-                <div
+                <button
                 className={`${styles.button} !w-[180px] my-3 font-Poppins cursor-pointer !bg-[crimson]`}
                 onClick={handleOrder}
                 >
                   Buy Now {data.price}$
-                </div>
+                </button>
               )}
             </div>
+            <br />
             <br />
             <p className="pb-1 text-black dark:text-white"># Source code included</p>
           <p className="pb-1  text-black dark:text-white"># Full lifetime access</p>
@@ -193,7 +203,35 @@ const CourseDetails = ({data}: Props) => {
         </div>
         </div>
       </div>
+      <>
+      {
+        open && (
+          <div className="w-full h-screen bg-[#00000036] fixed top-0 left-0 z-50 flex items-center justify-center">
+            <div className="min-h-[500px] w-[500px] bg-white rounded-xl shadow p-3">
+              <div className="w-full flex justify-end">
+                <IoMdCloseCircleOutline
+                size={40}
+                className=" text-black cursor-pointer"
+                onClick={()=> setOpen(false)}
+                />
+              </div>
+              <div className="w-full">
+                {
+                  stripePromis && clientSecret && (
+                    <Elements stripe={stripePromis} options={{clientSecret}}>
+                      <CheckOutFrom setOpen={setOpen} data={data}/>
 
+                    </Elements>
+                  )
+                }
+              </div>
+
+            </div>
+
+          </div>
+        )
+      }
+      </>
     </div>
   )
 }
