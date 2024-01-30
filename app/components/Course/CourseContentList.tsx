@@ -31,7 +31,7 @@ const CourseContentList:FC<Props> = (props) => {
         setVisibleSections(newVisibleSections);
     }
 
-  return (
+return (
     <div className={`mt-[15px] w-full ${!props.isDemo && 'ml-[-30px] sticky top-24 left-0 z-30'}`}>
         {
             videoSections.map((section:string, sectionIndex:number)=>{
@@ -110,24 +110,24 @@ const CourseContentList:FC<Props> = (props) => {
                             {item.videoLength> 60 ? "hours" : "minutes"}
                         </h5>
 
-                                                    </div>
+                                     </div>
 
-                                                </div>
-                                            )
-                                            })
-                                    }
+                               </div>
+                              )
+                           })
+                         }
 
-                                </div>
-                            )
-                        }
+                  </div>
+               )
+            }
 
-                    </div>
+       </div>
 
-                )
-            })
-        }
+     )
+  })
+}
 
-    </div>
+</div>
   )
 }
 export default CourseContentList;
