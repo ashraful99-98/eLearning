@@ -12,6 +12,8 @@ import CourseContentList from '../Course/CourseContentList';
 import CheckOutFrom from "../Payment/CheckOutFrom";
 import {Elements} from "@stripe/react-stripe-js";
 import { useLoadUserQuery } from '@/redux/features/api/apiSlice'
+import Image from 'next/image'
+import { VscVerifiedFilled } from 'react-icons/vsc'
 type Props = {
     data:any;
     stripePromis:any;
@@ -45,7 +47,7 @@ const CourseDetails = ({data, stripePromis,clientSecret}: Props) => {
             </h1>
             <div className='flex items-center justify-between pt-3'>
               <div className='flex items-center'>
-                <Ratings rating={data.rating}/>
+                <Ratings rating={data?.ratings}/>
                 <h5 className=' text-black dark:text-white'>
                   {data.reviews?.length} Reviews
                 </h5>
@@ -106,8 +108,9 @@ const CourseDetails = ({data, stripePromis,clientSecret}: Props) => {
           <br />
           <br />
           <div className="w-full">
-            <div className='800px:flex items-center'>
-              <Ratings rating={data?.rating}/>
+            <div className='flex flex-col  items-start'>
+             <div>
+             <Ratings rating={data?.ratings}/>
               <div className='mb-2 800px:mb-[unset]'>
               <h5 className='text-[25px] font-Poppins font-[600] text-black dark:text-white'>
               {Number.isInteger(data?.ratings) 
@@ -115,16 +118,18 @@ const CourseDetails = ({data, stripePromis,clientSecret}: Props) => {
               Course Rating || {data?.reviews?.length} Reviews
               </h5>
               </div>
+             </div> 
               <br />
+              <div>
+                
               {(
                 data?.reviews && [...data.reviews].reverse()).map((item:any, index:number)=>(
                   <div className="w-full pb-4" key={index}>
-                    <div className="flex">
+                    <div className="flex border-b border-[#000000] dark:border-[#ffffff83] pb-1">
                       <div className='w-[50px] h-[50px]'>
                         <div className='w-[50px] h-[50px] bg-slate-600 rounded-[50px] flex items-center justify-center cursor-pointer'>
-                        <h1 className='text-[25px] font-Poppins font-[600] text-black dark:text-white'>
-                         {item.user.name.slice(0,2)}
-                         </h1>
+                        <Image src={item.user?.avatar ? item.user?.avatar?.url : "https%3A%2F%2Fres.cloudinary.com%2Fdwtqcpdjr%2Fimage%2Fupload%2Fv1704382193%2Favatars%2Fa7hnxvo23p3kpz11b1eu.avif&w=32&q=75"} alt='' width={50} height={60}
+                            className=' rounded-full object-cover w-[50px] h-[50px]'/>
                         </div>
                       </div>
                       <div className=' hidden 800px:block pl-2'>
@@ -136,7 +141,7 @@ const CourseDetails = ({data, stripePromis,clientSecret}: Props) => {
                         </div>
                         <p className=' text-black dark:text-white'>{item.comment}</p>
                         <small className=' text-[#000000d1] dark:text-[#ffffff83]'>
-                          {format(item.createdAt)} ;
+                          {format(item.createdAt)} .
                         </small>
                       </div>
                       <div className=' pl-2 flex 800px:hidden items-center'>
@@ -148,9 +153,33 @@ const CourseDetails = ({data, stripePromis,clientSecret}: Props) => {
                       </div>
                     </div>
 
+                    {
+                            item.commentReplies.map((i:any,index:number)=>(
+                                // eslint-disable-next-line react/jsx-key
+                                <div className=' w-full flex 800px:ml-16 my-5'>
+                                    <div className=' w-[50px] h-[50px]'>
+                                    <Image
+                src={i.user.avatar ? i.user.avatar.url  : "https%3A%2F%2Fres.cloudinary.com%2Fdwtqcpdjr%2Fimage%2Fupload%2Fv1704382193%2Favatars%2Fa7hnxvo23p3kpz11b1eu.avif&w=32&q=75"} alt='' width={50} height={60}
+                className=' rounded-full object-cover w-[50px] h-[50px]'
+                />
+                                    </div>
+                                    <div className='pl-3 dark:text-white text-black'>
+                                    <div className="flex w-full items-center">
+                   <h5 className='text-[20px]'>
+                        {i.user.name}
+                    </h5>{i.user.role === "admin" && <VscVerifiedFilled className=" text-[20px] ml-1 text-[#4747f9]"/>}
+                   </div>
+                    <p>{i.comment}</p>
+                    <small className='dark:text-[#ffffff83] text-black'>{format(i.createdAt)}.</small>
+                </div>
+                                </div>
+                            ))
+                          }
+
                   </div>
                 ))
                 }
+              </div>
 
             </div>
           </div>
@@ -175,7 +204,7 @@ const CourseDetails = ({data, stripePromis,clientSecret}: Props) => {
               </h4>
             </div>
             <div className=' flex items-center'>
-              {isPurchased ? (
+              {isPurchased || user?.role === "admin" ? (
                 <Link
                 className={`${styles.button} !w-[180px] my-3 font-Poppins cursor-pointer !bg-[crimson]`}
                 href={`/course-access/${data._id}`}
