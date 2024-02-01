@@ -68,14 +68,16 @@ const page = (props: Props) => {
             setOpen={setOpen}
             activeItem={1}
             />
-            <div className=' w-[95%] 800px:w-[85%] m-auto min-h-[70vh]'>
+            <div className='bg-[#f3f3f3] dark:bg-transparent pb-12'>
+
+            <div className=' w-[95%] 800px:w-[85%] m-auto min-h-[70vh] '>
                 <Heading
                 title={"All courses - ELearning"}
                 description={"ELearning is a programming community."}
                 keywords={"programming community, coding skills, export insights, collaboration, growth"}
                 />
                 <br />
-                <div className=' w-full flex items-center flex-wrap mt-20'>
+                <div className=' w-full flex items-center flex-wrap pt-20 '>
                     <div className={` h-[35px] ${category === "All" ? "bg-[crimson]": "bg-[#5050cd]"} m-3 px-3 rounded-[30px] flex items-center justify-center font-Poppins cursor-pointer font-[600]`}
                     onClick={()=> setCategory("All")}
                     >
@@ -103,7 +105,7 @@ const page = (props: Props) => {
                     }
                     <br />
                     <br />
-                    <div className=' grid grid-cols-1 gap-[20px] md:grid-cols-2 md:gap-[25px] lg:grid-cols-3 lg:gap-[25px] 1500px:grid-cols-4 1500px:gap-[30px] mb-12 border-0  '>
+                    <div className=' grid grid-cols-1 gap-[20px] md:grid-cols-2 md:gap-[25px] lg:grid-cols-3 lg:gap-[25px] 1500px:grid-cols-4 1500px:gap-[30px]  border-0  '>
                         {
                             courses && courses.map((item:any, index:any)=>(
                                 <CourseCard
@@ -115,6 +117,7 @@ const page = (props: Props) => {
 
                 </div>
 
+            </div>
             </div>
 
             <Footer/>
