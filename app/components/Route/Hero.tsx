@@ -1,19 +1,38 @@
 import Image from "next/image";
 import Link from "next/link";
-import React,{FC} from "react";
+import React,{FC, useState} from "react";
 import { BiSearch } from "react-icons/bi";
 import './Hero.css';
 import { useGetHeroDataQuery } from "@/redux/features/layout/layoutApi";
+import Loader from "../Loader/Loader";
+import { useRouter } from "next/navigation";
 
 type Props={};
 
 const Hero: FC<Props>=(props)=>{
 
-    const { data, refetch } = useGetHeroDataQuery("Banner",{});
+    const { data, isLoading } = useGetHeroDataQuery("Banner",{});
+
+    const [search, setSearch] = useState("");
+
+    const router = useRouter();
+
+    const handleSearch = ()=>{
+        if(search === ""){
+            return
+        }else{
+            router.push(`/courses?title=${search}`)
+        }
+    }
+
 
 return(
-
-    <div className="items-center hero-section relative  hero_animation hero_textColor pt-10 z-40 ">
+<>
+{
+    isLoading ? (
+        <Loader/>
+    ):(
+        <div className="items-center hero-section relative  hero_animation hero_textColor pt-10 z-40 ">
 
         <div className="absolute  1000px:top-[unset] hero-div ">
 
@@ -43,7 +62,11 @@ return(
 
                     <input type="search"
                     placeholder="Search Course..."
-                    className="bg-transparent border dark:border-none dark:bg-[#575757] dark:placeholder:text-[#ffffffdd] rounded-[5px] p-2 w-full h-full outline-none text-[#0000004e] dark:text-[#ffffffe6] text-[20px] font-[500] font-Josefin " />
+                    className="bg-transparent border dark:border-none dark:bg-[#575757] dark:placeholder:text-[#ffffffdd] rounded-[5px] p-2 w-full h-full outline-none text-[#0000004e] dark:text-[#ffffffe6] text-[20px] font-[500] font-Josefin "
+                    value={search}
+                    onChange={(e)=> setSearch(e.target.value)}
+                    onClick={handleSearch}
+                    />
 
                     <div className="absolute flex items-center justify-center w-[50px] cursor-pointer h-[50px] right-0 top-0 bg-[#39c1f3] rounded-r-[5px]">
                         <BiSearch size={30}/>
@@ -78,6 +101,10 @@ return(
         </div>
 
     </div> 
+    )
+}
+</>
+ 
 );
 
 };

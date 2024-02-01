@@ -51,6 +51,7 @@ const EditCourse:FC<Props> = ({id}) => {
                 estimatedPrice:editCourseData?.estimatedPrice,
                 tags:editCourseData?.tags,
                 level:editCourseData.level,
+                categories:editCourseData?.categories,
                 demoUrl:editCourseData.demoUrl,
                 thumbnail:editCourseData?.thumbnail?.url,
             })
@@ -67,6 +68,7 @@ const EditCourse:FC<Props> = ({id}) => {
         estimatedPrice:"",
         tags:"",
         level:"",
+        categories:"",
         demoUrl:"",
         thumbnail:"",
     });
@@ -117,6 +119,7 @@ const EditCourse:FC<Props> = ({id}) => {
             thumbnail: courseInfo.thumbnail,
             level: courseInfo.level,
             demoUrl: courseInfo.demoUrl,
+            categories: courseInfo.categories,
             totalVideos : courseContentData.length,
             benefits: formattedBenefits,
             prerequisites:formattedPrerequisites,
@@ -124,7 +127,9 @@ const EditCourse:FC<Props> = ({id}) => {
         };
 
         setCourseData(data);
+        console.log(data);
     };
+
     
     
     const handleCourseCreate = async (e:any)=>{

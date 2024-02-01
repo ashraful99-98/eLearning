@@ -161,16 +161,18 @@ const CourseInformation:FC<Props> = ({courseInfo, setCourseInfo, active, setActi
             </div>
 
             </div>
-            <div className='w-[50%] flex flex-col'>
-                
-          <label htmlFor="" className={`${styles.label} w-[50%]`}>Course Categories</label>
-          <select name="" id="" className={` dark:!text-white !text-black mt-3 p-2 rounded`}
-          value={courseInfo.category}
-          onChange={(e:any)=> setCourseInfo({...courseInfo, category:e.target.value})}>
-             <option value="" >Select Categories</option>
+            <div className='w-[50%]'>
+          <label className={`${styles.label} w-[50%`}>Course Categories</label>
+
+          <select name="" id=""
+           className={`${styles.input}bg-[#ffff] dark:bg-[#292631] text-black`}
+          value={courseInfo.categories}
+          onChange={(e:any)=> setCourseInfo({...courseInfo, categories:e.target.value})}>
+
+             <option value="" >Select Category</option>
              {
               categories.map((item:any)=>(
-                <option value={item._id} key={item._id}>{item.title}</option>
+                <option value={item.title} key={item._id}>{item.title}</option>
               ))
              }
 

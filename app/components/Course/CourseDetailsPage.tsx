@@ -69,7 +69,10 @@ const CourseDetailsPage = ({id}: Props) => {
                 {
                     stripePromis && (
                         <CourseDetails
-                data={data.course} stripePromis={stripePromis} clientSecret={clientSecret}/>
+                data={data.course} stripePromis={stripePromis} clientSecret={clientSecret}
+                setRoute={setRoute}
+                setOpen={setOpen}
+                />
                     )
                 }
                 <Footer/>
