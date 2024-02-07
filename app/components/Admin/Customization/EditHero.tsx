@@ -58,7 +58,7 @@ const EditHero:FC<Props> = (props: Props) => {
   };
   return (
     <>
-<div className='w-full flex flex-col md:flex-row items-center mt-6 hero_animation hero_textColor'>
+<div className='w-full flex flex-col md:flex-row items-center mt-6 '>
   <div className='relative flex items-center justify-end w-full md:w-[40%]'>
     <img
       src={image}

@@ -74,7 +74,7 @@ const DashboardHeader:FC<Props> = ({open, setOpen}) => {
 
             {
                 open && (
-                    <div className='w-[350px] h-[50vh] dark:bg-[#2a355e] bg-gray-200 shadow-xl absolute top-16 right-0 z-10 rounded'>
+                    <div className='w-[350px] h-[50vh] dark:bg-[#2a355e] bg-gray-200 shadow-xl absolute top-16 right-0 z-70 rounded'>
                         <h5 className='text-center text-[20px] font-Poppins text-black dark:text-white p-2'>
                             Notification
                         </h5>

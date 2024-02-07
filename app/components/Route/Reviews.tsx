@@ -2,67 +2,65 @@ import Image from 'next/image'
 import React from 'react'
 import { styles } from '../Styles/styles'
 import ReviewCard from '../Review/ReviewCard';
-import img from '../../images/hero-banner-1.jpg'
-import img1 from '../../images/hero-banner-2.jpg'
 type Props = {}
 
 export const reviews=[
 {
   name:" Guru Bhai",
-  avatar:{img1},
+  avatar:`https://ibb.co/xXtDGGf`,
   profession:"Student | Cambridge university",
   comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod augue ut metus interdum, vel condimentum velit tincidunt."
 },
 {
     name: "Tech Enthusiast",
-    avatar: {img1},
+    avatar: "https://ibb.co/Rvk9F8Z",
     profession: "Developer | Tech Institute",
     comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod augue ut metus interdum, vel condimentum velit tincidunt."
   },
   {
     name: "Tech Enthusiast",
-    avatar: {img1},
+    avatar: "https://ibb.co/s3JyQd7",
     profession: "Developer | Tech Institute",
     comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod augue ut metus interdum, vel condimentum velit tincidunt."
   },
   { name: "Tech Enthusiast",
-  avatar: {img1},
+  avatar: "https://ibb.co/xXtDGGf",
   profession: "Developer | Tech Institute",
   comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod augue ut metus interdum, vel condimentum velit tincidunt."
   },
   {
     name: "Tech Enthusiast",
-    avatar: {img1},
+    avatar: "https://ibb.co/Rvk9F8Z",
     profession: "Developer | Tech Institute",
     comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod augue ut metus interdum, vel condimentum velit tincidunt."
   },
   {
     name: "Tech Enthusiast",
-    avatar: {img1},
+    avatar: "https://ibb.co/s3JyQd7",
     profession: "Developer | Tech Institute",
     comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod augue ut metus interdum, vel condimentum velit tincidunt."
   },
   {
     name: "Tech Enthusiast",
-    avatar: {img},
+    avatar: "https://ibb.co/xXtDGGf",
     profession: "Developer | Tech Institute",
     comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod augue ut metus interdum, vel condimentum velit tincidunt."
   },
   {
     name: "Tech Enthusiast",
-    avatar: {img1},
+    avatar: "https://ibb.co/Rvk9F8Z",
     profession: "Developer | Tech Institute",
     comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod augue ut metus interdum, vel condimentum velit tincidunt."
   },
   {
     name: "Tech Enthusiast",
-    avatar: {img1},
+    avatar: "https://ibb.co/s3JyQd7",
     profession: "Developer | Tech Institute",
     comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod augue ut metus interdum, vel condimentum velit tincidunt."
   },
   {
     name: "Tech Enthusiast",
-    avatar: {img},
+    avatar: "https://ibb.co/xXtDGGf",
     profession: "Developer | Tech Institute",
     comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod augue ut metus interdum, vel condimentum velit tincidunt."
   }

@@ -219,7 +219,11 @@ const CourseDetails = ({data, stripePromis,clientSecret, setOpen:openAuthModal, 
               </h4>
             </div>
             <div className=' flex items-center'>
-              {isPurchased || user?.role === "admin" ? (
+
+
+
+              {isPurchased || user?.role === "admin" ?
+               (
                 <Link
                 className={`${styles.button} !w-[180px] my-3 font-Poppins cursor-pointer !bg-[crimson]`}
                 href={`/course-access/${data._id}`}

@@ -32,9 +32,9 @@ return(
     isLoading ? (
         <Loader/>
     ):(
-        <div className="items-center hero-section relative  hero_animation hero_textColor pt-10 z-40 ">
+        <div className="items-center hero-section relative  hero_animation hero_textColor pt-10 z-40 ">          
 
-        <div className="absolute  1000px:top-[unset] hero-div ">
+        <div className="absolute  1000px:top-[unset] hero-div justify-center ">
 
             <div className="w-[100%] h-[100%] pb-24 1000px:w-[40%] flex 1000px:min-h-screen items-center justify-end 1000px:pt-[0] z-1 div-img">
 

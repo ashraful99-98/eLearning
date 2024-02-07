@@ -12,6 +12,7 @@ const ReviewCard = (props: Props) => {
     <div className='flex w-full'>
       <Image src={props.item.avatar} alt=''width={50}
        height={50} className='w-[50px] h-[50px] rounded-full object-cover'/>
+
         <div className='800px:flex justify-between w-full hidden'>
 
         <div className='pl-4'>

@@ -1,10 +1,11 @@
-import React, { FC } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import UserAnalytics from '../Analytics/UserAnalytics';
 import { BiBorderLeft } from 'react-icons/bi';
 import {PiUsersFourLight} from 'react-icons/Pi';
 import { Box, CircularProgress } from '@mui/material';
 import OrderAnalytics from '../Analytics/OrderAnalytics';
 import AllInvoices from '../Order/AllInvoices';
+import { useGetOrdersAnalyticsQuery, useGetUsersAnalyticsQuery } from '@/redux/features/analytics/analyticsApi';
 
 type Props = {
     open?: boolean;
@@ -41,6 +42,50 @@ type Props = {
  }
 
 const DeshboardWidgets:FC<Props> = ({open}) => {
+  const [orderComparePrecentenge, setOrderComparePrecentenge] = useState<any>();
+  const [userComparePrecentenge, setuserComparePrecentenge] = useState<any>();
+
+  const {data, isLoading}  = useGetUsersAnalyticsQuery({});
+  const {data: orderdata, isLoading:loadingOrder}  = useGetOrdersAnalyticsQuery({});
+  
+  useEffect(()=>{
+     if(isLoading && loadingOrder){
+      return;
+     }
+     else{
+      if(data && orderdata){
+        const usersLastTwoMounths = data.users.last12Months.slice(-2);
+        const ordersLastTwoMounths = orderdata.orders.last12Months.slice(-2);
+
+        if(usersLastTwoMounths.length === 2 && ordersLastTwoMounths.length === 2 ){
+          const usersCurrentMonth = usersLastTwoMounths[1].count;
+          const usersPrviouseMonth = usersLastTwoMounths[0].count; 
+          const ordersCurrentMonth = ordersLastTwoMounths[1].count;
+          const ordersPrviouseMonth = ordersLastTwoMounths[0].count; 
+
+          const usersPrecentChange = usersPrviouseMonth !== 0 ? ((usersCurrentMonth - usersPrviouseMonth) / usersPrviouseMonth) * 100 : 100;
+
+          const ordersPrecentChange = ordersPrviouseMonth !== 0 ? ((ordersCurrentMonth - ordersPrviouseMonth) / ordersPrviouseMonth) * 100 : 100;
+
+
+          setuserComparePrecentenge({
+            currentMonth : usersCurrentMonth,
+            previousMonth : usersPrviouseMonth,
+            percentChange : usersPrecentChange,
+          });
+          
+          setOrderComparePrecentenge({
+            currentMonth : ordersCurrentMonth,
+            previousMonth : ordersPrviouseMonth,
+            percentChange : ordersPrecentChange,
+          });
+
+        }
+        }
+
+      }
+     
+  },[isLoading,loadingOrder,data,orderdata]);
   return (
     <div className='mt-[30px] min-h-screen'>
       <div className='grid grid-cols-[75%,25%] mx-2'>
@@ -54,8 +99,10 @@ const DeshboardWidgets:FC<Props> = ({open}) => {
               <div className=''>
                 <BiBorderLeft className="dark:text-[#39a37a] text-black text-[30px]"/>
                 <h5 className='pt-2 font-Poppins dark:text-[#fff] text-black text-[20px]'>
-                  120
-
+                {
+                    orderComparePrecentenge?.currentMonth
+                  }
+              
                 </h5>
                 <h5 className='py-2 font-Poppins dark:text-[#39a37a] text-black text-[20px] font-[400]'>
                   Sales Obtained
@@ -64,8 +111,16 @@ const DeshboardWidgets:FC<Props> = ({open}) => {
 
               </div>
               <div>
-                <CircularProgressWithLabel value={100} open={open}/>
-                <h5 className='text-center pt-4'>+120%</h5>
+                <CircularProgressWithLabel value={
+                   orderComparePrecentenge?.percentChange > 0 ? 100 : 0
+                } open={open}/>
+                <h5 className='text-center pt-4'>
+                  {/* {
+                    orderComparePrecentenge.percentChange > 0 ? "+" + orderComparePrecentenge.percentChange.toFixed(2) :
+                   "-" + orderComparePrecentenge.percentChange.toFixed(2)
+                  } */}
+                  100 %
+                </h5>
               </div>
             
             </div>
@@ -78,7 +133,9 @@ const DeshboardWidgets:FC<Props> = ({open}) => {
                     <PiUsersFourLight className="dark:text-[#39a37a] text-black text-[30px]"/>
 
                     <h5 className='pt-2 font-Poppins dark:text-[#39a37a] text-black text-[20px]'>
-                  450
+                  {
+                    userComparePrecentenge?.currentMonth
+                  }
 
                 </h5>
                     <h5 className='py-2 font-Poppins dark:text-[#39a37a] text-black text-[20px] font-[400]'>
@@ -87,9 +144,16 @@ const DeshboardWidgets:FC<Props> = ({open}) => {
                 </h5>
                   </div>
                   <div>
-                  <CircularProgressWithLabel value={100} open={open}/>
+                  <CircularProgressWithLabel value={
+                    userComparePrecentenge?.percentChange > 0 ? 100 : 0
+                  } open={open}/>
 
-                  <h5 className='text-center pt-4'>+150%</h5>
+                  <h5 className='text-center pt-4'>
+                    {
+                      userComparePrecentenge?.percentChange > 0 
+                      ? '+' + userComparePrecentenge?.percentChange.toFixed(2)  : '-' + userComparePrecentenge?.percentChange.toFixed(2)
+                    } %
+                  </h5>
 
                   </div>
 

@@ -2,7 +2,7 @@
 const nextConfig = {
 
     images:{
-        domains: ['res.cloudinary.com','randomuser.me'],
+        domains: ['res.cloudinary.com','randomuser.me',"ibb.co"],
     },
 
 }

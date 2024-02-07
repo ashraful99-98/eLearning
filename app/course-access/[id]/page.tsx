@@ -18,12 +18,19 @@ const page = ({params}: Props) => {
     useEffect(()=>{
         if(data){
             const isPurchased = data.user.courses.find((item:any)=>item._id === id);
+            const admin = data.user.role === "admin";
+
+            // if( admin){
+            //     redirect(`/course-access/${data._id}`);
+            // }
+
             if(!isPurchased){
                 redirect("/");
             }
             if(error){
                 redirect("/");
             }
+        //    if(isPurchased)
         }
 
     },[data, error]);
