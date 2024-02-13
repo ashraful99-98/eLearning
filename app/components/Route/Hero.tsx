@@ -62,7 +62,7 @@ return(
 
                     <input type="search"
                     placeholder="Search Course..."
-                    className="bg-transparent border dark:border-none dark:bg-[#575757] dark:placeholder:text-[#ffffffdd] rounded-[5px] p-2 w-full h-full outline-none text-[#0000004e] dark:text-[#ffffffe6] text-[20px] font-[500] font-Josefin "
+                    className="bg-transparent dark:border-none dark:bg-[#575757] dark:placeholder:text-[#ffffffdd] placeholder:text-[#6d6c6c] rounded-[5px] p-2 w-full h-full outline-none text-[#4c4a4a] dark:text-[#ffffffe6] text-[20px] font-[500] font-Josefin border dark:border-[#ffff] border-[#6d6c6c] "
                     value={search}
                     onChange={(e)=> setSearch(e.target.value)}
                     onClick={handleSearch}

@@ -124,8 +124,9 @@ const Sidebar:FC<itemProps> = () => {
                             alignItems="center"
                             ml="15px"
                         >
-                            <Link href="/">
-                                <h3 className='text-[20px] font-Poppins uppercase dark:text-white text-black'>ELearning</h3>
+                            <Link href="/" className=' flex items-center'>
+                            <Image src={require("../../../images/CodeCanvass.svg")} width={30} height={15}  alt=""/>
+                                <h3 className='text-[20px] font-Poppins dark:text-white text-black ml-1'> CodeCanvas </h3>
                             </Link>
                             <IconButton onClick={() => setIsCollapsed(!isCollapsed)} className='inline-block'>
                                 <MdArrowBackIos className="text-black dark:text-[#ffffffc1]" />
@@ -330,13 +331,13 @@ const Sidebar:FC<itemProps> = () => {
                         {!isCollapsed && "Extras"}
                     </Typography>
 
-                    <Item
+                    {/* <Item
                         title='Settings'
                         to='/admin/settings'
                         icon={<MdSettings />}
                         selected={selected}
                         setSelected={setSelected}
-                    />
+                    /> */}
 
                     <div
                      onClick={logoutHandler}

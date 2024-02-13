@@ -90,22 +90,23 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
     <div className="w-full absolute">
       <div
       className={`${
-            active
-            ? "  dark:from-gray-900 dark:bg-opacity-50 dark:bg-gradient-to-b dark:to-black  h-[80px] from-white bg-gradient-to-t  to-slate-100 fixed top-0 left-0 w-full z-50 transition duration-500"
-            : " dark:from-gray-900 dark:bg-opacity-50 dark:bg-gradient-to-b dark:to-black  h-[80px] from-white bg-gradient-to-t  to-slate-100 fixed top-0 left-0 w-full z-50 transition duration-500"
-        }`}
+        active
+          ? "dark:from-gray-900 dark:bg-opacity-50 dark:bg-gradient-to-b dark:to-black h-[80px] from-white bg-gradient-to-t to-slate-100 fixed top-0 left-0 w-full z-50 transition duration-500 border-b border-gray-200"
+          : "dark:from-gray-900 dark:bg-opacity-50 dark:bg-gradient-to-b dark:to-black h-[80px] from-white bg-gradient-to-t to-slate-100 fixed top-0 left-0 w-full z-50 transition duration-500"
+      }`}
       >
         <div className="w-[95%] 800px:w-[92%] m-auto py-2 h-full ">
-          <div className="w-full h-full flex items-center justify-between p-3">
-            <div>
+          <div className="w-full h-full flex items-center justify-between">
+            <div className="">
               <Link
                 href={"/"}
-                className={`text-[25px] font-Poppins font-[500] text-black dark:text-white`}
+                className={`text-[25px] font-Poppins font-[500] text-black dark:text-white flex items-center`}
               >
-                ELearning
+              <Image src={require("../images/CodeCanvass.svg")} width={30} height={15}  alt="" className=" mr-1"/>
+                CodeCanvas 
               </Link>
             </div>
-            <div className="flex items-center">
+            <div className="flex items-center text-right">
               <NavItems activeItem={activeItem} isMobile={false} />
               <ThemeSwitcher />
 
@@ -120,7 +121,7 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
              
              
                </div>
-               {userData ? (
+               {userData || user ? (
                 <Link href={"/profile"}>
                 <Image 
                 src={user.avatar ? user.avatar.url : avatar }
@@ -158,7 +159,7 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
                   href={"/"}
                   className={`text-[20px] font-Poppins font-[500] text-black dark:text-white`}
                 >
-                  ELearning
+                  CodeCanvas 
                 </Link>
               </div>
 

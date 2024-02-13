@@ -72,8 +72,8 @@ const page = (props: Props) => {
 
             <div className=' w-[95%] 800px:w-[85%] m-auto min-h-[70vh] '>
                 <Heading
-                title={"All courses - ELearning"}
-                description={"ELearning is a programming community."}
+                title={"All courses - CodeCanvas"}
+                description={"CodeCanvas is a programming community."}
                 keywords={"programming community, coding skills, export insights, collaboration, growth"}
                 />
                 <br />

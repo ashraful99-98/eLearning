@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import React from 'react'
+import { FiGithub, FiLinkedin, FiYoutube } from 'react-icons/fi';
 
 type Props = {}
 
@@ -70,36 +71,36 @@ const Footer = (props: Props) => {
 
                     <ul className=' space-y-4'>
                     <li>
-                        <Link href=""
-                            className=' text-base text-black dark:text-gray-300 dark:hover:text-white'>
-                               Youtube
+                        <Link href="https://www.youtube.com/channel/UCejBxEuExRZKA0HSrwdvvFw"
+                            className=' text-base text-black dark:text-gray-300 dark:hover:text-white flex items-center'>
+                               <span className='mr-1'><FiYoutube /></span>Youtube
                             </Link>
                     </li>
                     <li>
-                        <Link href=""
-                            className=' text-base text-black dark:text-gray-300 dark:hover:text-white'>
-                               Instagram
+                        <Link href="https://www.linkedin.com/in/ashraful-islam-kamran/"
+                            className=' text-base text-black dark:text-gray-300 dark:hover:text-white flex items-center'>
+                              <span className='mr-1'><FiLinkedin /></span> Linkedin
                             </Link>
                     </li>
                     <li>
-                        <Link href=""
-                            className=' text-base text-black dark:text-gray-300 dark:hover:text-white'>
-                               github
+                        <Link href="https://github.com/ashraful99-98"
+                            className=' text-base text-black dark:text-gray-300 dark:hover:text-white flex items-center'>
+                              <span className='mr-1'><FiGithub /></span> github
                             </Link>
                     </li>
                     </ul>
                 </div>
 
                 <div>
-                <h3 className='text-[20px] font-[600] text-black dark:text-white'>Contact Info</h3>
+                <h3 className='text-[20px] font-[600] text-black dark:text-white pb-3'>Contact Info</h3>
                 <p className='text-base text-black dark:text-gray-300 dark:hover:text-white pb-2'>
-                    Call Us: 017-XXX-000-XXX
+                    Call Us: 017-211-000-355
                 </p>
                 <p className='text-base text-black dark:text-gray-300 dark:hover:text-white pb-2'>
-                    Address : sylhet,Bangladesh
+                    Address : Sylhet-3100,Bangladesh
                 </p>
                 <p className='text-base text-black dark:text-gray-300 dark:hover:text-white pb-2'>
-                    Mail Us: elearning23&24@gmail.com
+                    Mail Us:  CodeCanvas23&24@gmail.com
                 </p>
                 </div>
 
@@ -109,7 +110,7 @@ const Footer = (props: Props) => {
             <br />
             
             <p className=' text-center text-black dark:text-white'>
-                Copyright @ 2023 & 2024 ELearning | All Rights Reserved
+                Copyright @ 2023 & 2024 CodeCanvas | All Rights Reserved
             </p>
         
 

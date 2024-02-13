@@ -15,8 +15,11 @@ const CourseContentList:FC<Props> = (props) => {
     );
 
     const videoSections: string[] = [
-        ...new Set<string>(props.data?.map((item:any)=> item.videoSection)),
-    ];
+        ...new Set<string>(
+          (props.data ?? []).map((item: any) => item.videoSection)
+        )
+      ];
+      
 
     let totalCount: number = 0; //Total count of videos from provious sections 
 

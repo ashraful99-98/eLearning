@@ -3,16 +3,15 @@ import React, { useState } from 'react'
 import Heading from '../utils/Heading'
 import Header from '../components/Header'
 import { useSelector } from 'react-redux'
+import Contact from "./Contact";
 import Footer from '../components/Footer/Footer'
-import Policy from "./Policy"
-
 type Props = {}
 
 const page = (props: Props) => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const [open, setOpen] = useState(false);
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const [activeItem, setActiveItem] = useState(3);
+    const [activeItem, setActiveItem] = useState(5);
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const [route, setRoute] = useState("Login");
     // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -20,8 +19,8 @@ const page = (props: Props) => {
   return (
     <div>
         <Heading
-        title='Policy -CodeCanvas'
-        description='CodeCanvas is a learning management system for helping programmers.'
+        title='Contact -CodeCanvas '
+        description='CodeCanvas  is a learning management system for helping programmers.'
         keywords='programing, MERN, Redux, Machine Learning'
         />
 
@@ -32,10 +31,8 @@ const page = (props: Props) => {
         setRoute={setRoute}
         route={route}
         />
-        <Policy/>
-
+        <Contact/>
         <Footer/>
-
     </div>
   )
 }

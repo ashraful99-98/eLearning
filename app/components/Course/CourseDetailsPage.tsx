@@ -7,6 +7,7 @@ import Footer from '../Footer/Footer';
 import CourseDetails from "./CourseDetails";
 import { useCreatePaymentIntentMutation, useGetStripePublishableKeyQuery } from '@/redux/features/orders/orderApi';
 import {loadStripe} from "@stripe/stripe-js";
+// import toast from 'react-hot-toast';
 type Props = {
     id:string;
 }
@@ -16,7 +17,7 @@ const CourseDetailsPage = ({id}: Props) => {
     const [open, setOpen] = useState(false);
     const {data, isLoading} = useGetCoursesDetailsQuery(id);
     const {data: config} = useGetStripePublishableKeyQuery({});
-    const [createPaymentIntent, {data: paymentIntentData}] = useCreatePaymentIntentMutation();
+    const [createPaymentIntent, {data: paymentIntentData, isSuccess}] = useCreatePaymentIntentMutation();
     const [stripePromis, setStripePromis] = useState<any>(null);
     const [clientSecret, setClientSecret]= useState('');
 
@@ -41,6 +42,9 @@ const CourseDetailsPage = ({id}: Props) => {
         if(paymentIntentData){
             setClientSecret(paymentIntentData?.client_secret);
         }
+        // if(isSuccess){
+        //     toast.success("Payment done successfully");
+        // }
     },[paymentIntentData]);
 
 
@@ -53,9 +57,9 @@ const CourseDetailsPage = ({id}: Props) => {
         ) : (
             <div>
                 <Heading
-                title={data.course.name + "- ELearning"}
+                title={data.course.name + "- CodeCanvas"}
                 description={
-                    "ELearning is a programming community which is developed by Developer"
+                    "CodeCanvas is a programming community which is developed by Developer"
                 }
                 keywords={data?.course?.tags}
                 />

@@ -7,8 +7,8 @@ const About = (props: Props) => {
     const eLearningTemplate: any = [
         {
           title: "Introduction",
-          subTitle: "Importance of eLearning website",
-          description: "Welcome to our eLearning platform, where knowledge meets convenience. In this course, we will explore the various aspects that make eLearning a crucial tool in today's educational landscape.",
+          subTitle: "Importance of CodeCanvas website",
+          description: "Welcome to our CodeCanvas platform, where knowledge meets convenience. In this course, we will explore the various aspects that make eLearning a crucial tool in today's educational landscape.",
         },
         {
           title: "Interactive Learning Resources",
@@ -59,7 +59,7 @@ const About = (props: Props) => {
       <div className='mt-20 font-Poppins pb-4'>
         <h1 className={`${styles.title} text-[30px]`}>
           About of{' '}
-          <span className='text-blue-500'>ELearning</span>
+          <span className='text-blue-500'>CodeCanvas</span>
         </h1>
         <div className='flex items-center flex-col justify-center '>
           {eLearningTemplate.map((section: any, index: number) => (

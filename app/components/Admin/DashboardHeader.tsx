@@ -28,6 +28,10 @@ const DashboardHeader:FC<Props> = ({open, setOpen}) => {
         new Audio(
             "https://res.cloudinary.com/damk25wo5/video/upload/v1693465789/notification_vcetjn.mp3"
         )
+        // new Audio(
+        //     <audio src='../../images/notification-sound-14006.mp3'></audio>
+
+        // )
     );
 
     const playerNotificationSound = ()=>{
@@ -61,7 +65,7 @@ const DashboardHeader:FC<Props> = ({open, setOpen}) => {
      
 
   return (
-    <div className='w-full flex items-center justify-end p-6 fixed top-5 right-0'>
+    <div className=' flex items-center justify-end p-6 fixed top-5 right-0 z-50 dark:bg-[#1e2b58] bg-[#d1cece] w-[130px] h-[60px] mr-4 rounded-full' >
         <ThemeSwitcher/>
         <div className='relative cursor-pointer m-2'
         onClick={()=> setOpen(!open)}
@@ -74,7 +78,7 @@ const DashboardHeader:FC<Props> = ({open, setOpen}) => {
 
             {
                 open && (
-                    <div className='w-[350px] h-[50vh] dark:bg-[#2a355e] bg-gray-200 shadow-xl absolute top-16 right-0 z-70 rounded'>
+                    <div className='w-[350px] dark:bg-[#2a355e] bg-gray-200 shadow-xl absolute top-16 right-0 z-70 rounded'>
                         <h5 className='text-center text-[20px] font-Poppins text-black dark:text-white p-2'>
                             Notification
                         </h5>
@@ -82,11 +86,11 @@ const DashboardHeader:FC<Props> = ({open, setOpen}) => {
                             notifications && notifications.map((item:any,index:number)=>(
                                 // eslint-disable-next-line react/jsx-key
                                 <div className='dark:bg-[2d3a4ea1] bg-[#00000013] font-Poppins border-b dark:border-b-[#ffffff47] border-b-[#00000f] py-1.5' >
-                                <div className=' w-full flex items-center  justify-between p-2'>
+                                <div className=' w-full flex items-center  justify-between p-2 mb-2'>
                                     <p className='text-black dark:text-white cursor-pointer'>
                                        {item.title}
                                     </p>
-                                    <p className='text-black dark:text-white cursor-pointer'
+                                    <p className='text-black dark:text-white cursor-pointer hover:text-[#5555e3] hover:dark:text-[#b13939]'
                                     onClick={()=> handleNotificationStatusChange(item._id)}
                                     >
                                        Mark as read
@@ -109,9 +113,6 @@ const DashboardHeader:FC<Props> = ({open, setOpen}) => {
                     </div>
                 )
             }
-
-
-
         </div>
 
     </div>

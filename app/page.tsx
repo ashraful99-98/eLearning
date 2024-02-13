@@ -7,6 +7,7 @@ import Courses from "./components/Route/Courses";
 import Reviews from "./components/Route/Reviews";
 import FAQ from "./components/FAQ/FAQ";
 import Footer from "./components/Footer/Footer";
+import Image from "next/image";
 
 
 
@@ -19,8 +20,8 @@ const Page: FC<Props> = (props) => {
   return (
     <div>
       <Heading
-        title="ELearning"
-        description="ELearning is a platform for students to learn and get help from teachers"
+        title="CodeCanvas"
+        description="CodeCanvas is a platform for students to learn and get help from teachers"
         keywords="Programing,MERN,Redux,Machine Learning"
       />
 

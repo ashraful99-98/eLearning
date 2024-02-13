@@ -38,7 +38,7 @@ const CourseContent = ({id, user}: Props) => {
             <div className='w-full grid 800px:grid-cols-10 bg-[#fcecec] dark:bg-[#191936]'>
                 <Heading
                 title={data[activeVideo]?.title}
-                description='anything'
+                description={data[activeVideo]?.description}
                 keywords={data[activeVideo]?.tags}
                 />
                 <div className='col-span-7 mt-20'>

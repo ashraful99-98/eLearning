@@ -18,7 +18,7 @@ const page = ({params}: Props) => {
     useEffect(()=>{
         if(data){
             const isPurchased = data.user.courses.find((item:any)=>item._id === id);
-            const admin = data.user.role === "admin";
+            // const admin = data.user.role === "admin" && item?._id === id;
 
             // if( admin){
             //     redirect(`/course-access/${data._id}`);
@@ -30,7 +30,6 @@ const page = ({params}: Props) => {
             if(error){
                 redirect("/");
             }
-        //    if(isPurchased)
         }
 
     },[data, error]);

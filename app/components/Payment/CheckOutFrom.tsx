@@ -20,7 +20,7 @@ const CheckOutFrom = ({setOpen,data,user}: Props) => {
     const stripe = useStripe();
     const elements= useElements();
     const [message,setMessage] = useState<any>("");
-    const [createOrder,{data:orderData, error}] = useCreateOrderMutation();
+    const [createOrder,{data:orderData, error, isSuccess}] = useCreateOrderMutation();
     const [loadUser, setLoadUser] = useState(false);
     const {} = useLoadUserQuery({skip:loadUser ? false : true});
 
@@ -47,7 +47,6 @@ const CheckOutFrom = ({setOpen,data,user}: Props) => {
             setIsLoading(false);
             createOrder({courseId:data._id,payment_info:paymentIntent});
         }
-        
     };
 
     useEffect(()=>{
@@ -55,21 +54,31 @@ const CheckOutFrom = ({setOpen,data,user}: Props) => {
         if(orderData){
             setLoadUser(true);
 
+            
             socketId.emit("notification",{
                 title: "New Order",
                 message: `You have a new order from ${data.course.user}`,
                 userId : user._id, 
             })
-
+            setOpen(false);
             redirect(`/course-access/${data._id}`);
         }
-        if(error){
-            if("data" in error){
-                const errorMessage = error as any;
-                toast.error(errorMessage.daat.message);
-            }
+
+        if(isSuccess){
+            toast.success("Payment done successfully");
+            redirect(`/course-access/${data._id}`);
         }
-    },[orderData, error]);
+        // if(error){
+        //     if("data" in error){
+        //         const errorMessage = error as any;
+        //         toast.error(errorMessage.data.message);
+        //     }
+        // }
+    },[orderData,  isSuccess]);
+
+    // const handleClose = ()=>{
+    //     setOpen(false);
+    // }
 
 
 

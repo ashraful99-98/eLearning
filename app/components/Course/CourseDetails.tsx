@@ -1,14 +1,13 @@
 import CoursePlayer from '@/app/utils/CoursePlayer'
-import Ratings from '@/app/utils/Ratings'
-import Link from 'next/link'
-
-import React, { useEffect, useState } from 'react'
-import { IoMdCheckmarkCircleOutline, IoMdCloseCircleOutline } from 'react-icons/io'
+import Ratings from '@/app/utils/Ratings';
+import Link from 'next/link';
+import React, { useEffect, useState } from 'react';
+import { IoMdCheckmarkCircleOutline, IoMdCloseCircleOutline } from 'react-icons/io';
 import { useSelector } from 'react-redux'
 import { format } from 'timeago.js'
 import { styles } from '../Styles/styles'
 import CourseContentList from '../Course/CourseContentList';
-
+import axios from 'axios';
 import CheckOutFrom from "../Payment/CheckOutFrom";
 import {Elements} from "@stripe/react-stripe-js";
 import { useLoadUserQuery } from '@/redux/features/api/apiSlice'
@@ -51,7 +50,7 @@ const CourseDetails = ({data, stripePromis,clientSecret, setOpen:openAuthModal, 
       openAuthModal(true);
      }
    };
-
+   
   return (
     <div>
       <div className='w-[95%] 800px:w-[90%] m-auto py-5 pt-20'>
@@ -220,9 +219,7 @@ const CourseDetails = ({data, stripePromis,clientSecret, setOpen:openAuthModal, 
             </div>
             <div className=' flex items-center'>
 
-
-
-              {isPurchased || user?.role === "admin" ?
+              {isPurchased ?
                (
                 <Link
                 className={`${styles.button} !w-[180px] my-3 font-Poppins cursor-pointer !bg-[crimson]`}

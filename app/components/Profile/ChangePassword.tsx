@@ -53,7 +53,7 @@ const ChangePassword:FC<Props>= (props:Props) => {
                 <div className='w-[100%] 800px:w-[60%] mt-5'>
 
                     <label className='block pb-2 text-black dark:text-[#fff]'>Enter your old password</label>
-                    <input type="password" className={`${styles.input} !w-[95%] mb-4 800px:mb-0 text-black dark:text-[#fff]`}
+                    <input type="password" className={`${styles.input} !w-[95%] mb-4 800px:mb-0 text-black dark:text-[#fff] !border dark:border-[#ffff] border-[#000]`}
                     required 
                     value={oldPassword}
                     onChange={(e)=>setOldPassword(e.target.value)}
@@ -62,7 +62,7 @@ const ChangePassword:FC<Props>= (props:Props) => {
                 <div className='w-[100%] 800px:w-[60%] mt-5'>
 
                     <label className='block pb-2 text-black dark:text-[#fff]'>Enter your new password</label>
-                    <input type="password" className={`${styles.input} !w-[95%] mb-4 800px:mb-0 text-black dark:text-[#fff]`}
+                    <input type="password" className={`${styles.input} !w-[95%] mb-4 800px:mb-0 text-black dark:text-[#fff] !border dark:border-[#ffff] border-[#000]`}
                     required 
                     value={newPassword}
                     onChange={(e)=> setNewPassword(e.target.value)}
@@ -72,13 +72,13 @@ const ChangePassword:FC<Props>= (props:Props) => {
                 <div className='w-[100%] 800px:w-[60%] mt-5'>
 
                     <label className='block pb-2 text-black dark:text-[#fff]'>Enter your confirm password</label>
-                    <input type="password" className={`${styles.input} !w-[95%] mb-4 800px:mb-0 text-black dark:text-[#fff]`}
+                    <input type="password" className={`${styles.input} !w-[95%] mb-4 800px:mb-0 text-black dark:text-[#fff] !border dark:border-[#ffff] border-[#000]`}
                     required 
                     value={confirmPassword}
                     onChange={(e)=> setConfirmPassword(e.target.value)}
                     />
 
-                    <input className={`w-[95%] h-[40px] border border-[#37a39a] text-center text-black  dark:text-white  bg-transparent rounded-[5px] my-6 cursor-pointer`} required value="Update" type="submit" />
+                    <input className={`w-[95%] h-[40px] border border-[#37a39a] text-center text-black  dark:text-white  dark:bg-transparent bg-[#37a39a] rounded-[5px] my-6 cursor-pointer`} required value="Update" type="submit" />
 
                 </div>
 

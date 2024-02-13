@@ -150,7 +150,7 @@ const handleDelete = async() =>{
         <Loader/>
       ):(
         <Box m="20px">
-           {
+           {/* {
             isTeam && (
               <div className="w-full flex justify-end">
               <div className={`${styles.button} !w-[200px] dark:bg-[#37a39a] dark:border dark:border-[#ffffff6c] !h-[35px]`}
@@ -161,7 +161,7 @@ const handleDelete = async() =>{
               </div>
           </div>
             )
-           }
+           } */}
         <Box
         m="40px 0 0 0"
         height="80vh"

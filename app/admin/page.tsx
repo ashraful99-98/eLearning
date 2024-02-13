@@ -12,8 +12,8 @@ const page = (props: Props) => {
        <AdminProtected>
 
        <Heading
-        title='ELearning - Admin'
-        description='ELearning is a platform for students to learn and get help form teachers'
+        title='CodeCanvas - Admin'
+        description='CodeCanvas is a platform for students to learn and get help form teachers'
         keywords='Programming,MERN,Redux,Machine Learning'
         />
         <div className='flex h-[200vh]'>

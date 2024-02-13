@@ -20,8 +20,8 @@ const page = (props: Props) => {
   return (
     <div>
         <Heading
-        title='FAQ -ELearning'
-        description='ELearning is a learning management system for helping programmers.'
+        title='FAQ -CodeCanvas'
+        description='CodeCanvas is a learning management system for helping programmers.'
         keywords='programing, MERN, Redux, Machine Learning'
         />
 

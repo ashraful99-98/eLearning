@@ -53,7 +53,7 @@ const Profile:FC<Props> = ({user}) => {
     <div className='w-full  relative
     '>
     <div className='w-[85%] h-full flex mx-auto mt-4'>
-        <div className={`w-[60px] 800px:w-[310px] h-[460px] dark:bg-slate-900 bg-gray-400 bg-opacity-90 border-2 dark:border-[#ffffff1d] border-[#ffffff16] rounded-[5px] dark:shadow-sm shadow-sm mt-[80px] mb-[80px] sticky ${scroll ? "top-[130px]" : "top-[30px]"}`}>
+        <div className={`w-[60px] 800px:w-[310px] h-[460px] dark:bg-slate-900 bg-[#f3f3f3] bg-opacity-90 border-2 dark:border-[#ffffff1d] border-[#ffffff16] rounded-[5px] dark:shadow-sm shadow-sm mt-[80px] mb-[80px] sticky ${scroll ? "top-[130px]" : "top-[30px]"}`}>
 
             <SideBarProfile
             user={user}
@@ -67,7 +67,7 @@ const Profile:FC<Props> = ({user}) => {
         </div>
             {
                 active === 1 && (
-                   <div className='w-full h-[460px] dark:bg-slate-900 bg-gray-400 mt-[80px] bg-opacity-90 border-2  dark:border-[#ffffff1d] border-[#ffffff16] rounded-[5px] ml-4 z-[9] '>
+                   <div className='w-full h-[460px] dark:bg-slate-900 bg-[#f3f3f3]  mt-[80px] bg-opacity-90 border-2  dark:border-[#ffffff1d] border-[#ffffff16] rounded-[5px] ml-4 z-[9] '>
                     <ProfileInfo avatar={avatar} user={user}/>
 
                    </div>
@@ -76,7 +76,7 @@ const Profile:FC<Props> = ({user}) => {
 
             {
                 active === 2 && (
-                   <div className='w-full h-[460px] dark:bg-slate-900 bg-gray-400 mt-[80px] bg-opacity-90 border-2  dark:border-[#ffffff1d] border-[#ffffff16] rounded-[5px] ml-4 z-[9] '>
+                   <div className='w-full h-[460px] dark:bg-slate-900  bg-[#f3f3f3]  mt-[80px] bg-opacity-90 border-2  dark:border-[#ffffff1d] border-[#ffffff16] rounded-[5px] ml-4 z-[9] '>
 
                     <ChangePassword/>
                    
