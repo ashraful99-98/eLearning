@@ -13,6 +13,7 @@ import {
 import { styles } from '../components/Styles/styles';
 import {  useContactHandlerMutation } from '@/redux/features/contact/contactApi';
 import toast from 'react-hot-toast';
+import Image from 'next/image';
 
 
 type Props = {
@@ -87,10 +88,16 @@ const initState = {values:initValues};
     } 
   }
  
-  // xl:w-[50%] lg:w-[50%] md:[w-60%] sm:[w-80%] 1500px:w-[80%] 800px:w-[85%] 
   return (
-    <div className=' mt-32 mb-20 flex flex-col items-center text-center justify-center'>
-    <Container className=' p-4 bg-slate-200 dark:bg-[#1c1c4d] text-black dark:text-white font-Poppins w-[50%]'>
+    <div className=' mt-28 mb-14 flex justify-center items-center text-center  w-[90%]'>
+      <div className='w-[45%] hero_animation  rounded-full p-14 z-1 div-img hero_animation xl:ml-24 lg:ml-6 md:ml-0 sm:ml-0 xl:mt-10 lg:mt-0 md:mt-0 sm:mt-0 mr-4 '>
+
+      <Image src={require("../images/contactUs.svg")} width={500}
+         height={500} alt="" className=" items-center text-center justify-center"/>
+
+      </div>
+      <div className='w-[45%] ml-4 font-Poppins'>
+      <Container className=' p-4 bg-[#f0f0f9] dark:bg-[#1c1c4d] text-black dark:text-white font-Poppins w-[100%] rounded'>
        <Heading className=' text-[28px]'>Contact Us</Heading>
        <FormControl isRequired isInvalid={ !user.name} mb={5}>
 
@@ -106,7 +113,7 @@ const initState = {values:initValues};
            className={`${styles.input} !border !border-[#525050] dark:!border-[#ffff]
              `}
            />
-           <FormErrorMessage>Required</FormErrorMessage>
+           <FormErrorMessage className=' text-red-500'>required</FormErrorMessage>
 
        </FormControl>
 
@@ -121,7 +128,7 @@ const initState = {values:initValues};
             errorBorderColor='red.300'
             className={`${styles.input} !border !border-[#525050] dark:!border-[#ffff] `}  
             />
-           <FormErrorMessage>Required</FormErrorMessage>
+           <FormErrorMessage className=' text-red-500'>required</FormErrorMessage>
            
        </FormControl>
        <FormControl isRequired isInvalid={ !values.subject} mb={5}>
@@ -134,15 +141,15 @@ const initState = {values:initValues};
            required
            onBlur={onBlur}
           className={`${styles.input} !border !border-[#525050] dark:!border-[#ffff] `} errorBorderColor='red.300' />
-           <FormErrorMessage>Required</FormErrorMessage>
+           <FormErrorMessage className=' text-red-500'>required</FormErrorMessage>
            
 
        </FormControl>
        <FormControl isRequired isInvalid={!values.message} mb={5}>
      
            <FormLabel className={`${styles.label}`}>Message</FormLabel>
-           <Textarea rows={4} name="message" value={values.message} onChange={handleChange}     onBlur={onBlur}  className={`${styles.input} !border !border-[#525050] dark:!border-[#ffff]`} errorBorderColor='red.300'  />
-           <FormErrorMessage>Required</FormErrorMessage>
+           <Textarea rows={6} name="message" value={values.message} onChange={handleChange}     onBlur={onBlur}  className={`${styles.input} !border !border-[#525050] dark:!border-[#ffff]`} errorBorderColor='red.300'  />
+           <FormErrorMessage className=' text-red-500'>required</FormErrorMessage>
            
        </FormControl>
        <Button
@@ -154,6 +161,8 @@ const initState = {values:initValues};
        className={`${styles.button} !w-[150px]`}
        >Submit</Button>
     </Container>
+
+      </div>
    </div> 
     );
 };
