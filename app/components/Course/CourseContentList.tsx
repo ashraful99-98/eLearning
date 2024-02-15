@@ -54,7 +54,7 @@ return (
 
                 const sectionContentHours : number = sectionVideosLength/60;
                 return(
-                    <div className={`${!props.isDemo && 'border-b border-[#ffffff8e] pb-2'}`} key={section}>
+                    <div className={`${!props.isDemo && 'border-b dark:border-[#ffffff8e] border-[#484848] pb-2'}`} key={section}>
                         <div className="w-full flex">
                             <div className=' w-full flex justify-between items-center'>
                                 <h2 className='text-[22px] text-black dark:text-white'>
@@ -92,7 +92,7 @@ return (
 
                                             return(
                                                 <div 
-                                                className={` w-full ${videoIndex === props.activeVideo ? "bg-slate-800" : ""} cursor-pointer transition-all p-2`}
+                                                className={` w-full ${videoIndex === props.activeVideo ? "dark:bg-slate-800 bg-[#c8c6c6] " : ""} cursor-pointer transition-all p-2`}
                                                 
                                                 key={item._id}
                                                 onClick={()=> props.isDemo ? null : props?.setActiveVideo(videoIndex)}>
@@ -109,8 +109,8 @@ return (
                                                             {item.title}
                                                         </h1>
                                                         <h5 className=' pl-8 text-black dark:text-white'>
-                            {item.videoLength < 60 ?  contentLength.toFixed(2) : item.videoLength}{" "}
-                            {item.videoLength> 60 ? "hours" : "minutes"}
+                            {item.videoLength > 60 ?  contentLength.toFixed(2) : item.videoLength}{" "}
+                            {item.videoLength > 60 ? "hours" : "minutes"}
                         </h5>
 
                                      </div>

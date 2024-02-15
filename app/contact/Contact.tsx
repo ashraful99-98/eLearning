@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Button,
   Container,
@@ -9,107 +9,113 @@ import {
   Input,
   Text,
   Textarea,
-  useToast
-} from "@chakra-ui/react";
+  } from "@chakra-ui/react";
 import { styles } from '../components/Styles/styles';
-import { useContactHandlerMutation } from '@/redux/features/contact/contactApi';
+import {  useContactHandlerMutation } from '@/redux/features/contact/contactApi';
+import toast from 'react-hot-toast';
 
-type Props = {};
 
-interface FormValues {
-  name: string;
-  email: string;
-  subject: string;
-  message: string;
-}
+type Props = {
+  user:any;
+};
 
-const initValues: FormValues = {
-  name: "",
-  email: "",
+
+const Contact = ({user}: Props) => {
+  
+const initValues = {
+  name: user.name,
+  email:user.email,
   subject: "",
   message: ""
 };
 
 const initState = {values:initValues};
+  const [state, setState] = useState(initState);
+  const [touched, setTouched] = useState({});
+  const [contactHandler,{isSuccess, error, isLoading}] = useContactHandlerMutation();
+  const { values,
+     } = state;
 
-const Contact = (props: Props) => {
-  const toast = useToast();
-  const [state, setState] = useState<{ values: FormValues, isLoading: boolean, error:any }>({ values: initValues, isLoading: false, error:null });
-  const [touched, setTouched] = useState<Record<string, boolean>>({});
-  const { values, isLoading, error } = state;
-  const [contactHandler,{ isSuccess}] = useContactHandlerMutation();
+     const onBlur = ({ target }: React.FocusEvent<HTMLInputElement>) => 
+     setTouched((prev: any) => ({
+       ...prev,
+       [target.name]: true,
+     }));
+   
+   const handleChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => 
+     setState((prev: any) => ({
+       ...prev,
+       values: {
+         ...prev.values,
+         [target.name]: target.value,
+       },
+     }));
+   
+  
+  useEffect(()=>{
+    if(isSuccess){
+      toast.success("Message set");
+    }
+    if(error){
+      if("data" in error){
+        const errorData = error as any;
+        toast.error(errorData.data.message);
+    }
+    }
+  },[isSuccess, error]);
 
-  const onBlur = ({ target }: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => setTouched((prev) => ({
-    ...prev,
-    [target.name]: true,
-  }));
-
-  const handleChange = ({ target }: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => setState((prev) => ({
-    ...prev,
-    values: {
-      ...prev.values,
-      [target.name]: target.value,
-    },
-  }));
-
-  const onSubmit = async () => {
-    setState((prev) => ({
+  const onSubmit = async()=>{
+          setState((prev) => ({
       ...prev,
       isLoading: true
     }));
-
+    
     try {
       await contactHandler(values);
       setTouched({});
       setState(initState);
-      toast({
-        title: 'Message sent',
-        status:"success",
-        duration: 2000,
-        position: "top",
-      });
-
-    } catch (error) {
+    }
+     catch (error) {
       setState((prev) => ({
         ...prev,
         isLoading: false,
-        error: error.message
       }));
+    
+        const errorData = error as any;
+        toast.error(errorData.data.message);
+    
     } 
-  };
-
+  }
+ 
+  // xl:w-[50%] lg:w-[50%] md:[w-60%] sm:[w-80%] 1500px:w-[80%] 800px:w-[85%] 
   return (
     <div className=' mt-32 mb-20 flex flex-col items-center text-center justify-center'>
-    <Container className=' p-4 bg-slate-200 dark:bg-[#1c1c4d] text-black dark:text-white font-Poppins w-[45%] '>
+    <Container className=' p-4 bg-slate-200 dark:bg-[#1c1c4d] text-black dark:text-white font-Poppins w-[50%]'>
        <Heading className=' text-[28px]'>Contact Us</Heading>
-       {
-        error && (
-          <Text
-          color="red.300" my={4} fontSize="xl"
-          >{error}</Text>
-        )
-       }
-       <FormControl isRequired isInvalid={touched.name && !values.name} mb={5}>
+       <FormControl isRequired isInvalid={ !user.name} mb={5}>
+
         
            <FormLabel className={`${styles.label}`}>Name</FormLabel>
            <Input type='text'
            name="name"
-           value={values.name}
+           required
+           errorBorderColor='red.300'
+           value={user.name || values.name}
            onChange={handleChange}
            onBlur={onBlur}
            className={`${styles.input} !border !border-[#525050] dark:!border-[#ffff]
              `}
-           errorBorderColor='red.300'
            />
            <FormErrorMessage>Required</FormErrorMessage>
 
        </FormControl>
 
-       <FormControl isRequired isInvalid={touched.email && !values.email} mb={5}>
+       <FormControl isRequired isInvalid={ !user.email} mb={5}>
            <FormLabel className={`${styles.label}`}>Email</FormLabel>
            <Input type='email'
             name="email"
-            value={values.email}
+            required
+            value={ user.email || values.email}
             onChange={handleChange}
             onBlur={onBlur}
             errorBorderColor='red.300'
@@ -118,23 +124,24 @@ const Contact = (props: Props) => {
            <FormErrorMessage>Required</FormErrorMessage>
            
        </FormControl>
-       <FormControl isRequired isInvalid={touched.subject && !values.subject} mb={5}>
+       <FormControl isRequired isInvalid={ !values.subject} mb={5}>
        
            <FormLabel className={`${styles.label}`}>Subject</FormLabel>
            <Input type='text'
             name="subject"
            value={values.subject}
            onChange={handleChange}
+           required
            onBlur={onBlur}
           className={`${styles.input} !border !border-[#525050] dark:!border-[#ffff] `} errorBorderColor='red.300' />
            <FormErrorMessage>Required</FormErrorMessage>
            
 
        </FormControl>
-       <FormControl isRequired isInvalid={touched.message && !values.message} mb={5}>
+       <FormControl isRequired isInvalid={!values.message} mb={5}>
      
            <FormLabel className={`${styles.label}`}>Message</FormLabel>
-           <Textarea  rows={4} name="message" value={values.message} onChange={handleChange} onBlur={onBlur} className={`${styles.input} !border !border-[#525050] dark:!border-[#ffff]`} errorBorderColor='red.300'  />
+           <Textarea rows={4} name="message" value={values.message} onChange={handleChange}     onBlur={onBlur}  className={`${styles.input} !border !border-[#525050] dark:!border-[#ffff]`} errorBorderColor='red.300'  />
            <FormErrorMessage>Required</FormErrorMessage>
            
        </FormControl>
@@ -142,7 +149,7 @@ const Contact = (props: Props) => {
        variant="outline"
        colorScheme='blue'
        isLoading={isLoading}
-       disabled={!values.name || !values.email || !values.subject || !values.message}
+       disabled={!user.name || !user.email || !values.subject || !values.message}
        onClick={onSubmit}
        className={`${styles.button} !w-[150px]`}
        >Submit</Button>

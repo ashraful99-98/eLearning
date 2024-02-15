@@ -31,7 +31,7 @@ const page = (props: Props) => {
         setRoute={setRoute}
         route={route}
         />
-        <Contact/>
+        <Contact user={user}/>
         <Footer/>
     </div>
   )

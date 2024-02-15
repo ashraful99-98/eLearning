@@ -84,7 +84,6 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
       setOpenSidebar(false);
     }
   };
-  // console.log(user);
 
   return (
     <div className="w-full absolute">
@@ -95,7 +94,7 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
           : "dark:from-gray-900 dark:bg-opacity-50 dark:bg-gradient-to-b dark:to-black h-[80px] from-white bg-gradient-to-t to-slate-100 fixed top-0 left-0 w-full z-50 transition duration-500"
       }`}
       >
-        <div className="w-[95%] 800px:w-[92%] m-auto py-2 h-full ">
+        <div className="xl:w-[95%] lg:w-[100%] md:w-[100%] sm:w-[92%] 1500px:w-[90%] 800px:w-[90%] m-auto py-2 h-full ">
           <div className="w-full h-full flex items-center justify-between">
             <div className="">
               <Link
@@ -108,41 +107,46 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
             </div>
             <div className="flex items-center text-right">
               <NavItems activeItem={activeItem} isMobile={false} />
-              <ThemeSwitcher />
-
-              {/* only for mobile  */}
-              
-              <div className="800px:hidden">
-                <HiOutlineMenuAlt3
-                  size={25}
-                  className="cursor-pointer dark:text-white text-black"
-                  onClick={() => setOpenSidebar(true)}
-                />
-             
-             
-               </div>
-               {userData || user ? (
-                <Link href={"/profile"}>
-                <Image 
-                src={user.avatar ? user.avatar.url : avatar }
-                // src={userData?.avatar ? userData?.avatar.url : avatar }
-                alt=""
-                width={30}
-                height={30}
-                className="w-[30px] h-[30px] rounded-full cursor-pointer"
-                style={{border: activeItem === 5 ? "2px solid #37a39a" : "none"}}
-                />
-                </Link>
-                
-              ) : (
-                <HiOutlineUserCircle
-                  size={25}
-                  className="hidden 800px:block cursor-pointer dark:text-white text-black"
-                  onClick={() => setOpen(true)}
-                />
-                
-              )}
             </div>
+
+            <div className="flex items-center text-right">
+            <ThemeSwitcher />
+
+{/* only for mobile  */}
+
+<div className="800px:hidden">
+  <HiOutlineMenuAlt3
+    size={25}
+    className="cursor-pointer dark:text-white text-black"
+    onClick={() => setOpenSidebar(true)}
+  />
+
+
+ </div>
+
+ {userData || user ? (
+  <Link href={"/profile"}>
+  <Image 
+  src={user.avatar ? user.avatar.url : avatar }
+  // src={userData?.avatar ? userData?.avatar.url : avatar }
+  alt=""
+  width={30}
+  height={30}
+  className="w-[30px] h-[30px] rounded-full cursor-pointer"
+  style={{border: activeItem === 5 ? "2px solid #37a39a" : "none"}}
+  />
+  </Link>
+  
+) : (
+  <HiOutlineUserCircle
+    size={25}
+    className="hidden 800px:block cursor-pointer dark:text-white text-black"
+    onClick={() => setOpen(true)}
+  />
+  
+)}
+            </div>
+
           </div>
         </div>
 

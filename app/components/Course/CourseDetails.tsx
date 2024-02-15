@@ -13,6 +13,7 @@ import {Elements} from "@stripe/react-stripe-js";
 import { useLoadUserQuery } from '@/redux/features/api/apiSlice'
 import Image from 'next/image'
 import { VscVerifiedFilled } from 'react-icons/vsc'
+import { useCreateOrderMutation } from '@/redux/features/orders/orderApi';
 type Props = {
     data:any;
     stripePromis:any;
@@ -23,6 +24,7 @@ type Props = {
 
 const CourseDetails = ({data, stripePromis,clientSecret, setOpen:openAuthModal, setRoute}: Props) => {
   const {data:userData} = useLoadUserQuery(undefined,{});
+  const [createOrder,{isLoading:loadOrder}] = useCreateOrderMutation();
 
   const [user, setUser] = useState<any>();
   
@@ -52,7 +54,8 @@ const CourseDetails = ({data, stripePromis,clientSecret, setOpen:openAuthModal, 
    };
    
   return (
-    <div>
+  
+      <div>
       <div className='w-[95%] 800px:w-[90%] m-auto py-5 pt-20'>
         <div className='w-full flex flex-col-reverse 800px:flex-row'>
           <div className='w-full 800px:w-[65%] 800px:pr-5'>
@@ -280,6 +283,7 @@ const CourseDetails = ({data, stripePromis,clientSecret, setOpen:openAuthModal, 
       }
       </>
     </div>
-  )
-}
+    )
+   }
+
 export default CourseDetails;

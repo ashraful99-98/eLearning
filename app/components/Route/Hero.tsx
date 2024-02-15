@@ -32,17 +32,15 @@ return(
     isLoading ? (
         <Loader/>
     ):(
-        <div className="items-center hero-section relative  hero_animation hero_textColor pt-10 z-40 ">          
+        <div className="pt-24 pb-12 bg-[#f3f3f3] dark:bg-[#080834] ">          
 
-        <div className="absolute  1000px:top-[unset] hero-div justify-center ">
+        <div className=" hero-div justify-end items-center text-center ">
+           <div className=" rounded-full p-14 z-1 div-img hero_animation xl:ml-24 lg:ml-6 md:ml-0 sm:ml-0 xl:mt-10 lg:mt-0 md:mt-0 sm:mt-0  ">
 
-            <div className="w-[100%] h-[100%] pb-24 1000px:w-[40%] flex 1000px:min-h-screen items-center justify-end 1000px:pt-[0] z-1 div-img">
+<Image src={data?.layout?.banner?.image?.url} width={500}
+height={500} alt="" className=" items-center text-center justify-center" />
 
-                  <Image src={data?.layout?.banner?.image?.url} width={550}
-                  height={550} alt="" className="img-box" />
-
-            </div>
-
+</div>
             <div className="1000px:w-[60%] flex flex-col items-center 1000px:mt-[0px] text-center 1000px:text-left relative w-[100%] h-[100%] top-10 div-info z-0">
 
                 <h2 className="dark:text-white text-[#000000c7]  font-Josefin font-[600] text-[50px] 1500px:w-[55%] 1100px:w-[78]% ">

@@ -234,7 +234,7 @@ const CourseContentMedia = ({data, id, activeVideo, setActiveVideo,user, refetch
                     <textarea name="" value={question}
                     onChange={(e)=> setQuestion(e.target.value)}
                     placeholder='Write your question...'
-                    className=' outline-none bg-transparent ml-3 border boder-[#fffff57] 800px:w-full p-2 rounded w-[90%] 800px:text-[18px] font-Poppins'
+                    className=' outline-none bg-transparent ml-3 text-[#424040] dark:text-white border dark:border-[#f4f4f4] border-[#000] 800px:w-full p-2 rounded w-[90%] 800px:text-[18px] font-Poppins'
                     id="" cols={40} rows={5}>
 
                     </textarea>
@@ -308,7 +308,7 @@ const CourseContentMedia = ({data, id, activeVideo, setActiveVideo,user, refetch
                                 onChange={(e)=> setReview(e.target.value)}
                                 cols={40} rows={5}
                                 placeholder='Write your comment...'
-                                className=' outline-none bg-transparent 800px:ml-3 border border-[#ffffff57] w-[95%] 800px:w-full p-2 rounded text-[18px] font-Poppins'
+                                className=' outline-none bg-transparent 800px:ml-3 border dark:border-[#ffffff57] border-[#000] text-[#494747] dark:text-[#f4f4f4] w-[95%] 800px:w-full p-2 rounded text-[18px] font-Poppins'
                                 ></textarea>
                             </div>
                          </div>
@@ -361,7 +361,7 @@ const CourseContentMedia = ({data, id, activeVideo, setActiveVideo,user, refetch
                          isReviewReply && (
                          <div className="w-full flex relative">
 
-<input type="text" placeholder='Enter your reply...' className=" block 800px:ml-12 mt-2 outline-none bg-transparent border-b dark:border-[#ffffff83] border-[#000000] p-[5px] w-[95%]"
+<input type="text" placeholder='Enter your reply...' className=" block 800px:ml-12 mt-2 outline-none bg-transparent border-b dark:border-[#ffffff83] text-black dark:text-white border-[#000000] p-[5px] w-[95%]"
 value={reply}
 onChange={(e:any)=> setReply(e.target.value)}
 />

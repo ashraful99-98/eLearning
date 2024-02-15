@@ -35,7 +35,7 @@ const CourseContent = ({id, user}: Props) => {
            setRoute={setRoute}
 
            />
-            <div className='w-full grid 800px:grid-cols-10 bg-[#fcecec] dark:bg-[#191936]'>
+            <div className='w-full grid 800px:grid-cols-10 bg-[#f3f3f3] dark:bg-[#191936]'>
                 <Heading
                 title={data[activeVideo]?.title}
                 description={data[activeVideo]?.description}

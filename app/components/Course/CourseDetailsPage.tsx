@@ -7,7 +7,6 @@ import Footer from '../Footer/Footer';
 import CourseDetails from "./CourseDetails";
 import { useCreatePaymentIntentMutation, useGetStripePublishableKeyQuery } from '@/redux/features/orders/orderApi';
 import {loadStripe} from "@stripe/stripe-js";
-// import toast from 'react-hot-toast';
 type Props = {
     id:string;
 }
@@ -30,7 +29,8 @@ const CourseDetailsPage = ({id}: Props) => {
         }
 
         if(data){
-            const amount = Math.round(data.course.price * 100);
+            // const amount = Math.round(data.course.price * 100);
+            const amount = Math.round(data.course.price);
 
             createPaymentIntent(amount);
         }
@@ -42,9 +42,7 @@ const CourseDetailsPage = ({id}: Props) => {
         if(paymentIntentData){
             setClientSecret(paymentIntentData?.client_secret);
         }
-        // if(isSuccess){
-        //     toast.success("Payment done successfully");
-        // }
+       
     },[paymentIntentData]);
 
 
