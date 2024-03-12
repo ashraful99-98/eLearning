@@ -86,7 +86,7 @@ const AllInvoices = ({isDashboard}: Props) => {
     });
 
   return (
-    <div className={!isDashboard ? 'mt-[120px]' : 'mt-[0px]'}>
+    <div className={!isDashboard ? 'mt-[110px]' : 'mt-[0px]'}>
       {
         isLoading ? (
           <Loader/>
@@ -150,6 +150,7 @@ const AllInvoices = ({isDashboard}: Props) => {
               rows={rows}
               columns={columns}
               components={isDashboard ? {} : {Toolbar:GridToolbar}}
+              className=' text-black dark:text-white'
               />
 
             </Box>

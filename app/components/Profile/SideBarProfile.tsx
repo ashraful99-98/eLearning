@@ -62,7 +62,7 @@ const SideBarProfile:FC<Props> = ({user,active,avatar,setActive,logoutHandler}) 
         }
 
         <div className={`w-full flex items-center px-3 py-4 cursor-pointer ${active === 4 ? "dark:bg-slate-800 bg-slate-300":"bg-transparent"}`}
-        onClick={()=>logoutHandler()}
+        onClick={()=>logoutHandler(true)}
         >
             <AiOutlineLogout size={20} className="text-black dark:text-white"/>
             <h5 className='pl-2 800px:block hidden font-Poppins dark:text-white text-black'>Logout</h5>

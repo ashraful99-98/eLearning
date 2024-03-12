@@ -13,7 +13,7 @@ const EditFaq = (props: Props) => {
     const {data, isLoading,refetch} = useGetHeroDataQuery("FAQ",{
         refetchOnMountOrArgChange:true,
     });
-console.log(data);
+// console.log(data);
    const [editLayout,{ isSuccess:layoutSuccess, error}] = useEditLayoutMutation();
 
     const [questions,setQuestions]= useState<any[]>([]);
@@ -85,7 +85,7 @@ console.log(data);
     isLoading ? (
       <Loader/>  
     ) : (
-<div className='w-full md:w-[90%] lg:w-[80%] m-auto mt-[120px]'>
+<div className='w-full md:w-[90%] lg:w-[80%] m-auto h-full mt-[120px]'>
   <div className='mt-12'>
     <dl className='space-y-8'>
       {questions.map((q: any, index: number) => (

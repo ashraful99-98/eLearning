@@ -97,7 +97,7 @@ const initState = {values:initValues};
 
       </div>
       <div className='w-[45%] ml-4 font-Poppins'>
-      <Container className=' p-4 bg-[#f0f0f9] dark:bg-[#1c1c4d] text-black dark:text-white font-Poppins w-[100%] rounded'>
+      <Container className=' p-4 bg-[#f9f9f9] dark:bg-[#1c1c4d] text-black dark:text-white font-Poppins w-[100%] rounded border dark:border-[#1c1c4d] border-[#d8d3d3]'>
        <Heading className=' text-[28px]'>Contact Us</Heading>
        <FormControl isRequired isInvalid={ !user.name} mb={5}>
 
@@ -110,7 +110,7 @@ const initState = {values:initValues};
            value={user.name || values.name}
            onChange={handleChange}
            onBlur={onBlur}
-           className={`${styles.input} !border !border-[#525050] dark:!border-[#ffff]
+           className={`${styles.input} !border !border-[#d8d3d3] dark:!border-[#ffff]
              `}
            />
            <FormErrorMessage className=' text-red-500'>required</FormErrorMessage>
@@ -126,7 +126,7 @@ const initState = {values:initValues};
             onChange={handleChange}
             onBlur={onBlur}
             errorBorderColor='red.300'
-            className={`${styles.input} !border !border-[#525050] dark:!border-[#ffff] `}  
+            className={`${styles.input} !border !border-[#d8d3d3] dark:!border-[#ffff] `}  
             />
            <FormErrorMessage className=' text-red-500'>required</FormErrorMessage>
            
@@ -140,7 +140,7 @@ const initState = {values:initValues};
            onChange={handleChange}
            required
            onBlur={onBlur}
-          className={`${styles.input} !border !border-[#525050] dark:!border-[#ffff] `} errorBorderColor='red.300' />
+          className={`${styles.input} !border !border-[#d8d3d3] dark:!border-[#ffff] `} errorBorderColor='red.300' />
            <FormErrorMessage className=' text-red-500'>required</FormErrorMessage>
            
 
@@ -148,7 +148,7 @@ const initState = {values:initValues};
        <FormControl isRequired isInvalid={!values.message} mb={5}>
      
            <FormLabel className={`${styles.label}`}>Message</FormLabel>
-           <Textarea rows={6} name="message" value={values.message} onChange={handleChange}     onBlur={onBlur}  className={`${styles.input} !border !border-[#525050] dark:!border-[#ffff]`} errorBorderColor='red.300'  />
+           <Textarea rows={6} name="message" value={values.message} onChange={handleChange}     onBlur={onBlur}  className={`${styles.input} !border !border-[#d8d3d3] dark:!border-[#ffff]`} errorBorderColor='red.300'></Textarea>
            <FormErrorMessage className=' text-red-500'>required</FormErrorMessage>
            
        </FormControl>

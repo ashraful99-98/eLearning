@@ -1,18 +1,18 @@
 'use client'
-import { useGetUsersAllCoursesQuery } from '@/redux/features/courses/coursesApi'
-import { useGetHeroDataQuery } from '@/redux/features/layout/layoutApi'
-import { useSearchParams } from 'next/navigation'
-import React, { useEffect, useState } from 'react'
-import Loader from '../components/Loader/Loader'
-import Header from '../components/Header'
-import Heading from '../utils/Heading'
-import { styles } from '../components/Styles/styles'
-import CourseCard from '../components/Course/CourseCard'
-import Footer from '../components/Footer/Footer'
+import { useGetUsersAllCoursesQuery } from '@/redux/features/courses/coursesApi';
+import { useGetHeroDataQuery } from '@/redux/features/layout/layoutApi';
+import { useSearchParams } from 'next/navigation';
+import React, { useEffect, useState } from 'react';
+import Loader from '../components/Loader/Loader';
+import Header from '../components/Header';
+import Heading from '../utils/Heading';
+import { styles } from '../components/Styles/styles';
+import CourseCard from '../components/Course/CourseCard';
+import Footer from '../components/Footer/Footer';
 
 type Props = {}
 
-const page = (props: Props) => {
+const Page = (props: Props) => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const searchParams = useSearchParams();
 
@@ -128,4 +128,4 @@ const page = (props: Props) => {
     </>
   )
 }
-export default page;
+export default Page;

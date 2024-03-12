@@ -39,8 +39,6 @@ const Item: FC<itemProps> = ({ title, to, icon, selected, setSelected }) => {
 const Sidebar:FC<itemProps> = () => {
     const { user } = useSelector((state: any) => state.auth);
 
-    const [logout, setLogout] = useState(false);
-
     const [isCollapsed, setIsCollapsed] = useState(false);
 
     const [selected,setSelected] = useState("Dashboard");
@@ -54,10 +52,6 @@ const Sidebar:FC<itemProps> = () => {
     if (!mounted) {
         return null;
     }
-
-    const logoutHandler = () => {
-       setLogout(true);
-    };
 
     return (
         <Box
@@ -340,7 +334,6 @@ const Sidebar:FC<itemProps> = () => {
                     /> */}
 
                     <div
-                     onClick={logoutHandler}
                        >
                         <Item
                         title='Exit'
@@ -363,3 +356,6 @@ const Sidebar:FC<itemProps> = () => {
 };
 
 export default Sidebar;
+
+
+

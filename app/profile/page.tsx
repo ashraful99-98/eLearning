@@ -7,10 +7,28 @@ import Profile from "../components/Profile/Profile";
 import { useSelector } from "react-redux";
 import Footer from "../components/Footer/Footer";
 
+// import dynamic from 'next/dynamic';
+
+// const Heading = dynamic(() => import("../utils/Heading"), {
+//   ssr: false,
+// });
+// const Protected = dynamic(() => import("../hooks/useProtected"), {
+//   ssr: false,
+// });
+// const Header = dynamic(() => import("../components/Header"), {
+//   ssr: false,
+// });
+// const Profile = dynamic(() => import("../components/Profile/Profile"), {
+//   ssr: false,
+// });
+// const Footer = dynamic(() => import("../components/Footer/Footer"), {
+//   ssr: false,
+// });
+
 
 type Props = {};
 
-const page: FC<Props> = (props) => {
+const Page: FC<Props> = (props) => {
   /* eslint-disable react-hooks/rules-of-hooks */
   const [open, setOpen] = useState(false);
   const [activeItem, setActiveItem] = useState(6);
@@ -43,4 +61,4 @@ const page: FC<Props> = (props) => {
   );
 };
 
-export default page;
+export default Page;

@@ -50,13 +50,34 @@ const SignUp:FC<Props>= ({setRoute}) => {
            await register(data);
         }
     });
+    // const emailRegexPattern = /[A-Za-z0-9_+-][A-Za-z0-9_+-]*([.][A-Za-z0-9_+-]+)*@[A-Za-z.-]+"."[A-Za-z]{2,4}/;
+
+    // const emailRegexPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+    // const validationSchema = Yup.object().shape({
+    //     name: Yup.string().required("Please enter your name!"),
+    //     email: Yup.string()
+    //         .matches(emailRegexPattern, "Invalid email format")
+    //         .required("Please enter your email!"),
+    //     password: Yup.string().required("Please enter your password!")
+    // });
+    
+    // const formik = useFormik({
+    //     initialValues: { name: "", email: "", password: "" },
+    //     validationSchema: validationSchema,
+    //     onSubmit: async ({ name, email, password }) => {
+    //         const data = { name, email, password };
+    //         await register(data);
+    //     }
+    // });
+    
 
     const {errors,touched,values,handleChange,handleSubmit} = formik;
 
   return (
     <div className=' w-full'>
        <h1 className={`${styles.title}`}>
-            Join to ELearning
+            Join to CodeCanvas
         </h1>
         <form onSubmit={handleSubmit}>
             <div className='mb-3'>

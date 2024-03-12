@@ -173,7 +173,7 @@ const CourseDetails = ({data, stripePromis,clientSecret, setOpen:openAuthModal, 
                     {
                             item.commentReplies.map((i:any,index:number)=>(
                                 // eslint-disable-next-line react/jsx-key
-                                <div className=' w-full flex 800px:ml-16 my-5'>
+                                <div className=' w-full flex 800px:ml-16 my-5' key={index}>
                                     <div className=' w-[50px] h-[50px]'>
                                     <Image
                 src={i.user.avatar ? i.user.avatar.url  : "https%3A%2F%2Fres.cloudinary.com%2Fdwtqcpdjr%2Fimage%2Fupload%2Fv1704382193%2Favatars%2Fa7hnxvo23p3kpz11b1eu.avif&w=32&q=75"} alt='' width={50} height={60}

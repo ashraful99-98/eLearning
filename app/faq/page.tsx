@@ -4,11 +4,11 @@ import Heading from '../utils/Heading'
 import Header from '../components/Header'
 import { useSelector } from 'react-redux'
 import Footer from '../components/Footer/Footer'
-import FAQ from '../components/FAQ/FAQ'
+import FAQ from '../components/FAQ/FAQ';
 
 type Props = {}
 
-const page = (props: Props) => {
+const Page = (props: Props) => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const [open, setOpen] = useState(false);
     // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -39,4 +39,4 @@ const page = (props: Props) => {
     </div>
   )
 }
-export default page;
+export default Page;

@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { useEditLayoutMutation, useGetHeroDataQuery } from '@/redux/features/layout/layoutApi';
 import React, { FC, useEffect, useState } from 'react'
 import { AiOutlineCamera } from 'react-icons/ai';
@@ -58,7 +59,7 @@ const EditHero:FC<Props> = (props: Props) => {
   };
   return (
     <>
-<div className='w-full flex flex-col md:flex-row items-center mt-6 '>
+<div className='w-full flex flex-col md:flex-row items-center mt-16 '>
   <div className='relative flex items-center justify-end w-full md:w-[40%]'>
     <img
       src={image}

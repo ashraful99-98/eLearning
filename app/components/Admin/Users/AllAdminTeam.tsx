@@ -51,9 +51,10 @@ useEffect(() =>{
       toast.error(errorMessage.data.message);
     }
   }
-},[ deleteSuccess,deleteError, isSuccess, updateError]);
+},[deleteSuccess, deleteError, isSuccess, updateError, refetch]);
 
 const handleSubmit = async ()=>{
+
   await updateUserRole({email, role});
 }
 
@@ -227,7 +228,8 @@ const handleDelete = async() =>{
                     type="email"
                     name=""
                     required
-                    onChange={()=> setEmail(email)}
+                  
+                    onChange={(e)=> setEmail(email)}
                     id='email'
                     placeholder='Enter email..'
                     className={`${styles.input} mb-2`}
@@ -235,8 +237,9 @@ const handleDelete = async() =>{
                   <input
                     type="role"
                     name=""
-                    onChange={()=> setRole(role)}
                     required
+                    
+                    onChange={(e)=> setRole(role)}
                     id='role'
                     placeholder='admin'
                     className={`${styles.input} mb-4`}
@@ -260,7 +263,7 @@ const handleDelete = async() =>{
             aria-labelledby="modal-modal-title"
             aria-describedby ="modal-modal-description">
 
-              <Box className="absolute top-[50%] left-[50%] -translate-x-1/2 ">
+              <Box className="absolute top-[45%] left-[55%] -translate-x-1/2 opacity-90 dark:bg-slate-800 bg-[#f3f3f3] dark:text-white text-black  p-8 rounded ">
 
                 <h1 className={`${styles.title}`}>Are you sure you want to delete this user?</h1>
                 <div className='flex w-full items-center justify-between mb-6 mt-2'>

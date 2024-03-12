@@ -4,12 +4,20 @@ import AdminProtected from '@/app/hooks/adminProtected'
 import Heading from '@/app/utils/Heading'
 import React from 'react'
 import AdminSidebar from "../../components/Admin/sidebar/AdminSidebar";
-import AllUsers from '@/app/components/Admin/Users/AllUsers'
+import AllUsers from '@/app/components/Admin/Users/AllUsers';
 
 
-type Props = {}
+type Props = {
+  
+  title:string;
+  to:string;
+  icon: any;
+  selected:any;
+  setSelected:any;
+}
 
-const page = (props: Props) => {
+
+const Page = ({title, to, icon, selected, setSelected}: Props) => {
   return (
     <div>
     <AdminProtected>
@@ -22,10 +30,10 @@ const page = (props: Props) => {
      <div className='flex h-screen'>
          <div className='1500px:w-[16%] w-1/5'>
 
-             <AdminSidebar/>
+         <AdminSidebar title={title} to={to} icon={icon} selected={selected} setSelected={setSelected} />
 
          </div>
-         <div className='w-[85%] ml-8'>
+         <div className='w-[85%]  h-[100%] ml-8'>
               <DashboardHero/>
               <AllUsers isTeam={false} />
 
@@ -37,4 +45,4 @@ const page = (props: Props) => {
  </div>
   )
 }
-export default page;
+export default Page;

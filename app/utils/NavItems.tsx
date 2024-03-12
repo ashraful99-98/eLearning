@@ -41,7 +41,7 @@ const  NavItems:React.FC<Props>=({activeItem, isMobile}) =>{
                 <Link href={`${i.url}`} key={index} passHref>
                     
                     <span
-                    className={`${activeItem === index ? "dark:text-[#37a39a] text-[crimson]" : "dark:text-white text-black"} text-[18px] xl:px-6 lg:px-5 md:px-3 sm:px-2 font-Poppins font-[400]`}
+                    className={`${activeItem === index ? "dark:text-[#6b6bff] text-[crimson]" : "dark:text-white text-black"} text-[18px] xl:px-6 lg:px-5 md:px-3 sm:px-2 font-Poppins font-[400]`}
                     >
                        {i.name} 
                     </span>

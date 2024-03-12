@@ -34,7 +34,7 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
 
   const { user } = useSelector((state: any) => state.auth);
 
-  console.log(user, data);
+  // console.log(user, data);
 
   const [socialAuth, { isSuccess, error }] = useSocialAuthMutation();
 
@@ -66,7 +66,7 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
       setLogout(true);
     }
    }
-  }, [data, userData, isLoading, isSuccess]);
+  }, [data, userData, isLoading, isSuccess, socialAuth, refetch]);
 
 
   if (typeof window !== "undefined") {
@@ -86,12 +86,13 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
   };
 
   return (
+   <>
     <div className="w-full absolute">
       <div
       className={`${
         active
-          ? "dark:from-gray-900 dark:bg-opacity-50 dark:bg-gradient-to-b dark:to-black h-[80px] from-white bg-gradient-to-t to-slate-100 fixed top-0 left-0 w-full z-50 transition duration-500 border-b border-gray-200"
-          : "dark:from-gray-900 dark:bg-opacity-50 dark:bg-gradient-to-b dark:to-black h-[80px] from-white bg-gradient-to-t to-slate-100 fixed top-0 left-0 w-full z-50 transition duration-500"
+          ? "dark:from-gray-900 dark:bg-opacity-50 dark:bg-gradient-to-b dark:to-black h-[80px] from-white bg-gradient-to-t to-slate-100 fixed top-0 left-0 w-full z-50 transition   border-b border-[#f2f2f2] dark:border-[#5a5959]"
+          : "dark:from-gray-900 dark:bg-opacity-50 dark:bg-gradient-to-b dark:to-black h-[80px] from-white bg-gradient-to-t to-slate-100 fixed top-0 left-0 w-full z-50 transition  border-b border-[#f2f2f2] dark:border-[#5a5959]"
       }`}
       >
         <div className="xl:w-[95%] lg:w-[100%] md:w-[100%] sm:w-[92%] 1500px:w-[90%] 800px:w-[90%] m-auto py-2 h-full ">
@@ -246,6 +247,7 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
         </>
       )}
     </div>
+   </>
   );
 };
 export default Header;

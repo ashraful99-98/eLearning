@@ -6,7 +6,7 @@ type Props = {}
 
 const Footer = (props: Props) => {
   return (
-    <footer className='py-8 border border-[white] dark:border-[#1a1a1a] hero_animation hero_textColor'>
+    <footer className='py-6  hero_animation bg-[#9393ff] dark:bg-[#272727] hero_textColor'>
         <div className=''>
             <br />
             <div className='w-[95%] 800px:w-full 800px:max-w-[85%] mx-auto px-2 sm:px-6 lg:px-8'>
@@ -24,7 +24,7 @@ const Footer = (props: Props) => {
                             </Link>
                         </li>
                         <li>
-                            <Link href="/privacy-policy"
+                            <Link href="/policy"
                             className=' text-base text-black dark:text-gray-300 dark:hover:text-white'>
                                 Privacy Policy
                             </Link>
@@ -58,7 +58,7 @@ const Footer = (props: Props) => {
                         </li>
 
                         <li>
-                        <Link href="/course-dashboard"
+                        <Link href="/courses"
                             className=' text-base text-black dark:text-gray-300 dark:hover:text-white'>
                                Course Dashboard
                             </Link>
@@ -109,9 +109,11 @@ const Footer = (props: Props) => {
             </div>
             <br />
             
-            <p className=' text-center text-black dark:text-white'>
+                <div className=''>
+                <p className=' text-center text-black dark:text-white'>
                 Copyright @ 2023 & 2024 CodeCanvas | All Rights Reserved
             </p>
+                </div>
         
 
         </div>

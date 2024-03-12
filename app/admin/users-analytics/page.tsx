@@ -8,22 +8,29 @@ import UserAnalytics from '@/app/components/Admin/Analytics/UserAnalytics'
 
 
 
-type Props = {}
+type Props = {
+  title:string;
+  to:string;
+  icon: any;
+  selected:any;
+  setSelected:any;
+}
 
-const page = (props: Props) => {
+const Page = ({title, to, icon, selected, setSelected}: Props) => {
   return (
     <div>
     <AdminProtected>
 
     <Heading
-     title='ELearning - Admin'
-     description='ELearning is a platform for students to learn and get help form teachers'
+     title='CodeCanvas - Admin'
+     description='CodeCanvas is a platform for students to learn and get help form teachers'
      keywords='Programming,MERN,Redux,Machine Learning'
      />
      <div className='flex h-screen'>
          <div className='1500px:w-[16%] w-1/5'>
 
-             <AdminSidebar/>
+             
+         <AdminSidebar title={title} to={to} icon={icon} selected={selected} setSelected={setSelected} />
 
          </div>
          <div className='w-[85%] ml-8 '>
@@ -41,4 +48,4 @@ const page = (props: Props) => {
  </div>
   )
 }
-export default page;
+export default Page;

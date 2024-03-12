@@ -35,7 +35,7 @@ const CourseDetailsPage = ({id}: Props) => {
             createPaymentIntent(amount);
         }
 
-    },[config, data]);
+    },[config, createPaymentIntent, data]);
 
     useEffect(()=>{
 

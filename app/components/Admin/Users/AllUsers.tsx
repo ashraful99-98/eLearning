@@ -192,7 +192,7 @@ const handleDelete = async() =>{
             aria-labelledby="modal-modal-title"
             aria-describedby ="modal-modal-description">
 
-              <Box className="absolute top-[50%] left-[50%] -translate-x-1/2 opacity-80 bg-slate-800 p-8 rounded  ">
+              <Box className="absolute top-[45%] left-[55%] -translate-x-1/2 opacity-90 dark:bg-slate-800 bg-[#f3f3f3] dark:text-white text-black  p-8 rounded  ">
 
                 <h1 className={`${styles.title}`}>Are you sure you want to delete this user?</h1>
                 <div className='flex w-full items-center justify-between mb-6 mt-2'>

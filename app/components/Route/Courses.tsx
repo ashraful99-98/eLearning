@@ -1,6 +1,7 @@
 import { useGetUsersAllCoursesQuery } from '@/redux/features/courses/coursesApi'
 import React, { useEffect, useState } from 'react'
 import CourseCard from "../Course/CourseCard";
+import '../Course/Course.css';
 type Props = {}
 
 const Courses = (props: Props) => {
@@ -19,10 +20,10 @@ const Courses = (props: Props) => {
     <div>
         <div className="w-[90%] 800px:w-[80%] m-auto mt-5">
 
-            <h1 className=' text-center font-Poppins text-[25px] leading-[35px] sm:text-3xl lg:text-4xl dark:text-white text-black 800px:!leading-[60px] font-[700] tracking-tight'>
+            <h1 className='text-center font-Poppins text-[25px] leading-[35px] sm:text-3xl lg:text-4xl dark:text-white text-black 800px:!leading-[60px] font-[700] tracking-tight'>
                 Expand Your Career {" "}
                 <span className=' text-indigo-500'>Opportunity</span><br />
-                Opportunity With Our Courses
+                 With Our Courses
             </h1>
             <br />
             <br />

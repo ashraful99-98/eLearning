@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React, { FC } from 'react'
 import { AiOutlineUnorderedList } from 'react-icons/ai';
+import './Course.css';
 
 type Props = {
     item:any;
@@ -12,7 +13,9 @@ type Props = {
 const CourseCard:FC<Props> = ({item, isProfile}) => {
   return (
     <Link href={!isProfile ? `/course/${item._id}`: `course-access/${item._id}`}>
-        <div className='w-full min-h-[35vh] dark:bg-[#5b5bff] bg-[#b7aaf5] dark:bg-opacity-20 backdrop-blur dark:border-[#37a39a] border-[#00000015] dark:shadow-[bg-slate-700] rounded-lg p-3 shadow-sm dark:shadow-inner'>
+        <div>
+
+        <div className='w-full min-h-[35vh] dark:bg-[#5b5bff] bg-[#b7aaf5] dark:bg-opacity-20 backdrop-blur dark:border-[#37a39a] border-[#00000015] dark:shadow-[bg-slate-700] rounded-lg p-3 shadow-sm dark:shadow-inner hover-div '>
             <Image src={item.thumbnail.url} width={600} height={400} objectFit="contain" className=' rounded w-full' alt=''/>
             <br />
             <h1 className=' font-Poppins text-[16px] text-black dark:text-white'>
@@ -46,6 +49,7 @@ const CourseCard:FC<Props> = ({item, isProfile}) => {
 
                 </div>
             </div>
+        </div>
         </div>
     </Link>
   )

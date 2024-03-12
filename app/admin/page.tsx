@@ -4,9 +4,18 @@ import Heading from '../utils/Heading'
 import  AdminSidebar from "../components/Admin/sidebar/AdminSidebar";
 import AdminProtected from '../hooks/adminProtected';
 import DashboardHero from  "../components/Admin/DashboardHero";
-type Props = {}
 
-const page = (props: Props) => {
+type Props = {
+  
+  title:string;
+  to:string;
+  icon: any;
+  selected:any;
+  setSelected:any;
+}
+
+
+const Page = ({title, to, icon, selected, setSelected}: Props) => {
   return (
     <div>
        <AdminProtected>
@@ -19,7 +28,8 @@ const page = (props: Props) => {
         <div className='flex h-[200vh]'>
             <div className='1500px:w-[16%] w-1/5'>
 
-                <AdminSidebar />
+               
+         <AdminSidebar title={title} to={to} icon={icon} selected={selected} setSelected={setSelected} />
 
             </div>
             <div className='w-[85%]'>
@@ -33,4 +43,4 @@ const page = (props: Props) => {
     </div>
   )
 }
-export default page;
+export default Page;

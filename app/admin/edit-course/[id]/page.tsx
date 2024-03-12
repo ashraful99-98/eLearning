@@ -2,13 +2,20 @@
 import React from 'react'
 import AdminSidebar from '../../../components/Admin/sidebar/AdminSidebar';
 import Heading from '@/app/utils/Heading';
-
-import DashboardHeader from '@/app/components/Admin/DashboardHeader';
-
 import EditCourse from "../../../components/Admin/Course/EditCourse";
-type Props = {}
+import DashboardHero from '@/app/components/Admin/DashboardHero';
 
-const page = ({params}:any) => {
+type Props = {
+  
+    title:string;
+    to:string;
+    icon: any;
+    selected:any;
+    setSelected:any;
+  }
+  
+
+const Page = ({params,title, to, icon, selected, setSelected}:any) => {
     const id = params?.id;
   return (
     <div>
@@ -19,13 +26,13 @@ const page = ({params}:any) => {
         />
         <div className='flex'>
             <div className='1500px:w-[15%] w-1/5'>
-                <AdminSidebar/>
+            <AdminSidebar title={title} to={to} icon={icon} selected={selected} setSelected={setSelected} />
 
 
             </div>
 
             <div className='w-[83%]'>
-                <DashboardHeader/>
+                <DashboardHero/>
                 <EditCourse id={id}/>
 
             </div>
@@ -34,4 +41,4 @@ const page = ({params}:any) => {
     </div>
   )
 }
-export default page;
+export default Page;

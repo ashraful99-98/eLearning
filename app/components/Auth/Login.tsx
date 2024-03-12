@@ -45,14 +45,14 @@ const Login:FC<Props>= ({setRoute,setOpen, refetch}) => {
                 toast.error(errorData.data.message);
             }
         }
-    }, [isSuccess,error,setOpen]);
+    }, [isSuccess, error, setOpen, refetch]);
 
     const {errors,touched,values,handleChange,handleSubmit}= formik;
 
   return (
     <div className=' w-full'>
        <h1 className={`${styles.title}`}>
-            Login with ELearning
+            Login with CodeCanvas
         </h1>
         <form onSubmit={handleSubmit}>
             <label 

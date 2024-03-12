@@ -208,7 +208,7 @@ const CourseContentMedia = ({data, id, activeVideo, setActiveVideo,user, refetch
                 <div>
                     {data[activeVideo]?.links.map((item:any, index:number)=>(
                        // eslint-disable-next-line react/jsx-key
-                       <div className='mb-5'>
+                       <div className='mb-5' key={index}>
                         <h2 className=' 800px:text-[20px] 800px:inline-block dark:text-white text-black'>
                             {item.title && item.title + ":"}
                         </h2>
@@ -270,143 +270,277 @@ const CourseContentMedia = ({data, id, activeVideo, setActiveVideo,user, refetch
         
         {
             activeBar === 3 && (
-                <div className='w-full'>
-                    <>
-                    {
-                        !isReviewExists && (
-                            <>
-                            <div className="w-full flex">
-                            <Image src={user?.avatar ? user?.avatar?.url : "https%3A%2F%2Fres.cloudinary.com%2Fdwtqcpdjr%2Fimage%2Fupload%2Fv1704382193%2Favatars%2Fa7hnxvo23p3kpz11b1eu.avif&w=32&q=75"} alt='' width={50} height={60}
-                            className=' rounded-full object-cover w-[50px] h-[50px]'/>
+//                 <div className='w-full'>
+//                     <>
+//                     {
+//                         !isReviewExists && (
+//                             <>
+//                             <div className="w-full flex">
+//                             <Image src={user?.avatar ? user?.avatar?.url : "https%3A%2F%2Fres.cloudinary.com%2Fdwtqcpdjr%2Fimage%2Fupload%2Fv1704382193%2Favatars%2Fa7hnxvo23p3kpz11b1eu.avif&w=32&q=75"} alt='' width={50} height={60}
+//                             className=' rounded-full object-cover w-[50px] h-[50px]'/>
 
-                            <div className="w-full">
-                                <h5 className=' pl-3 text-[20px] font-[500] dark:text-white text-black'>Give a Rating 
-                                    <span className=' text-red-500'>*</span>
-                                </h5>
+//                             <div className="w-full">
+//                                 <h5 className=' pl-3 text-[20px] font-[500] dark:text-white text-black'>Give a Rating 
+//                                     <span className=' text-red-500'>*</span>
+//                                 </h5>
 
-                                <div className=' flex w-full ml-2 pb-3'>
-                                    {[1,2,3,4,5].map((i)=>rating >= i ? (
-                                        <AiFillStar
-                                        key={i}
-                                        color="rgb(246,186,0)"
-                                        className="mr-1 cursor-pointer"
-                                        size={25}
-                                        onClick={()=> setRating(i)}
-                                        />
-                                    ):(
-                                        <AiOutlineStar
-                                        key={i}
-                                        color="rgb(246,186,0)"
-                                        className="mr-1 cursor-pointer"
-                                        size={25}
-                                        onClick={()=> setRating(i)}
-                                        />
-                                    ))}
-                                </div>
-                                <textarea name="" id=""
-                                value={review}
-                                onChange={(e)=> setReview(e.target.value)}
-                                cols={40} rows={5}
-                                placeholder='Write your comment...'
-                                className=' outline-none bg-transparent 800px:ml-3 border dark:border-[#ffffff57] border-[#000] text-[#494747] dark:text-[#f4f4f4] w-[95%] 800px:w-full p-2 rounded text-[18px] font-Poppins'
-                                ></textarea>
-                            </div>
-                         </div>
-                         <div className='w-full flex justify-end'>
-                    <div 
-                    className={`${styles.button} !w-[120px] !h-[40px] text-[18px] mt-5 ${reviewCreateLoading && 'cursor-not-allowed'}`}
-                    onClick={reviewCreateLoading ? () => {} : handleReviewSubmit}
-                    >
-                        Submit
-                    </div>
-                 </div>   
-                  </>
-                  )
-                }
-                <div className=' w-full h-[1px] bg-[#ffffff3b]'>
-                </div>
-                   <div className='w-full'>
-                      {(course?.reviews && [...course.reviews].reverse())?.map((item:any, index:number)=>(
-                        // eslint-disable-next-line react/jsx-key
-                        <div className="w-full my-5">
-                            <div className="w-full flex">
-                              <div>
-                              <Image src={item.user.avatar ? item.user.avatar.url : "https%3A%2F%2Fres.cloudinary.com%2Fdwtqcpdjr%2Fimage%2Fupload%2Fv1704382193%2Favatars%2Fa7hnxvo23p3kpz11b1eu.avif&w=32&q=75"} alt='' width={50} height={60}
-                    className=' rounded-full object-cover w-[50px] h-[50px]'/>
-                              </div>
-                                <div className="ml-2 text-black dark:text-[#f4f4f4]">
-                                    <h1 className='text-[18px]'>
-                                        {item?.user.name}
-                                    </h1>
-                                    <Ratings rating={item.rating}/>
-                                    <p>{item.comment}</p>
-                                    <small>
-                                        {format(item.createdAt)} .
-                                    </small>
-                                </div>
-                            </div>
-                            {
-                                user.role === "admin" && (
-                                    <span className={`text-black dark:text-[#ffffff83]  !ml-14 !mt-2`}
-                                    onClick={()=> {setIsReviewReply(true),
-                                    setReviewId(item._id)}}
-                                    >
-                                        Add Reply
+//                                 <div className=' flex w-full ml-2 pb-3'>
+//                                     {[1,2,3,4,5].map((i)=>rating >= i ? (
+//                                         <AiFillStar
+//                                         key={i}
+//                                         color="rgb(246,186,0)"
+//                                         className="mr-1 cursor-pointer"
+//                                         size={25}
+//                                         onClick={()=> setRating(i)}
+//                                         />
+//                                     ):(
+//                                         <AiOutlineStar
+//                                         key={i}
+//                                         color="rgb(246,186,0)"
+//                                         className="mr-1 cursor-pointer"
+//                                         size={25}
+//                                         onClick={()=> setRating(i)}
+//                                         />
+//                                     ))}
+//                                 </div>
+//                                 <textarea name="" id=""
+//                                 value={review}
+//                                 onChange={(e)=> setReview(e.target.value)}
+//                                 cols={40} rows={5}
+//                                 placeholder='Write your comment...'
+//                                 className=' outline-none bg-transparent 800px:ml-3 border dark:border-[#ffffff57] border-[#000] text-[#494747] dark:text-[#f4f4f4] w-[95%] 800px:w-full p-2 rounded text-[18px] font-Poppins'
+//                                 ></textarea>
+//                             </div>
+//                          </div>
+//                          <div className='w-full flex justify-end'>
+//                     <div 
+//                     className={`${styles.button} !w-[120px] !h-[40px] text-[18px] mt-5 ${reviewCreateLoading && 'cursor-not-allowed'}`}
+//                     onClick={reviewCreateLoading ? () => {} : handleReviewSubmit}
+//                     >
+//                         Submit
+//                     </div>
+//                  </div>   
+//                   </>
+//                   )
+//                 }
+//                 <div className=' w-full h-[1px] bg-[#ffffff3b]'>
+//                 </div>
+//                    <div className='w-full'>
+//                       {(course?.reviews && [...course.reviews].reverse())?.map((item:any, index:number)=>(
+//                         // eslint-disable-next-line react/jsx-key
+//                         <div className="w-full my-5">
+//                             <div className="w-full flex">
+//                               <div>
+//                               <Image src={item.user.avatar ? item.user.avatar.url : "https%3A%2F%2Fres.cloudinary.com%2Fdwtqcpdjr%2Fimage%2Fupload%2Fv1704382193%2Favatars%2Fa7hnxvo23p3kpz11b1eu.avif&w=32&q=75"} alt='' width={50} height={60}
+//                     className=' rounded-full object-cover w-[50px] h-[50px]'/>
+//                               </div>
+//                                 <div className="ml-2 text-black dark:text-[#f4f4f4]">
+//                                     <h1 className='text-[18px]'>
+//                                         {item?.user.name}
+//                                     </h1>
+//                                     <Ratings rating={item.rating}/>
+//                                     <p>{item.comment}</p>
+//                                     <small>
+//                                         {format(item.createdAt)} .
+//                                     </small>
+//                                 </div>
+//                             </div>
+//                             {
+//                                 user.role === "admin" && (
+//                                     <span className={`text-black dark:text-[#ffffff83]  !ml-14 !mt-2`}
+//                                     onClick={()=> {setIsReviewReply(true),
+//                                     setReviewId(item._id)}}
+//                                     >
+//                                         Add Reply
 
-                                    </span>
-                                )
-                            }
+//                                     </span>
+//                                 )
+//                             }
 
-                          {
-                         isReviewReply && (
-                         <div className="w-full flex relative">
+//                           {
+//                          isReviewReply && (
+//                          <div className="w-full flex relative">
 
-<input type="text" placeholder='Enter your reply...' className=" block 800px:ml-12 mt-2 outline-none bg-transparent border-b dark:border-[#ffffff83] text-black dark:text-white border-[#000000] p-[5px] w-[95%]"
-value={reply}
-onChange={(e:any)=> setReply(e.target.value)}
-/>
+// <input type="text" placeholder='Enter your reply...' className=" block 800px:ml-12 mt-2 outline-none bg-transparent border-b dark:border-[#ffffff83] text-black dark:text-white border-[#000000] p-[5px] w-[95%]"
+// value={reply}
+// onChange={(e:any)=> setReply(e.target.value)}
+// />
 
-<button type='submit'
-className={`absolute right-0 bottom-1 text-black dark:text-white $`}
-onClick={handleReviewReplySubmit}
->Submit</button>
-                         </div>
+// <button type='submit'
+// className={`absolute right-0 bottom-1 text-black dark:text-white $`}
+// onClick={handleReviewReplySubmit}
+// >Submit</button>
+//                          </div>
 
-                           )
-                          }
+//                            )
+//                           }
 
-                          {
-                            item.commentReplies.map((i:any,index:number)=>(
-                                // eslint-disable-next-line react/jsx-key
-                                <div className=' w-full flex 800px:ml-16 my-5'>
-                                    <div className=' w-[50px] h-[50px]'>
-                                    <Image
-                src={i.user.avatar ? i.user.avatar.url  : "https%3A%2F%2Fres.cloudinary.com%2Fdwtqcpdjr%2Fimage%2Fupload%2Fv1704382193%2Favatars%2Fa7hnxvo23p3kpz11b1eu.avif&w=32&q=75"} alt='' width={50} height={60}
-                className=' rounded-full object-cover w-[50px] h-[50px]'
-                />
-                                    </div>
-                                    <div className='pl-3 dark:text-white text-black'>
-                                    <div className="flex w-full items-center">
-                   <h5 className='text-[20px]'>
-                        {i.user.name}
-                    </h5>{i.user.role === "admin" && <VscVerifiedFilled className=" text-[20px] ml-1 text-[#4747f9]"/>}
-                   </div>
-                    <p>{i.comment}</p>
-                    <small className='dark:text-[#ffffff83] text-black'>{format(i.createdAt)}.</small>
-                </div>
-                                </div>
-                            ))
-                          }
+//                           {
+//                             item.commentReplies.map((i:any,index:number)=>(
+//                                 // eslint-disable-next-line react/jsx-key
+//                                 <div className=' w-full flex 800px:ml-16 my-5'>
+//                                     <div className=' w-[50px] h-[50px]'>
+//                                     <Image
+//                 src={i.user.avatar ? i.user.avatar.url  : "https%3A%2F%2Fres.cloudinary.com%2Fdwtqcpdjr%2Fimage%2Fupload%2Fv1704382193%2Favatars%2Fa7hnxvo23p3kpz11b1eu.avif&w=32&q=75"} alt='' width={50} height={60}
+//                 className=' rounded-full object-cover w-[50px] h-[50px]'
+//                 />
+//                                     </div>
+//                                     <div className='pl-3 dark:text-white text-black'>
+//                                     <div className="flex w-full items-center">
+//                    <h5 className='text-[20px]'>
+//                         {i.user.name}
+//                     </h5>{i.user.role === "admin" && <VscVerifiedFilled className=" text-[20px] ml-1 text-[#4747f9]"/>}
+//                    </div>
+//                     <p>{i.comment}</p>
+//                     <small className='dark:text-[#ffffff83] text-black'>{format(i.createdAt)}.</small>
+//                 </div>
+//                                 </div>
+//                             ))
+//                           }
                             
 
-                        </div>
-                      ))}
+//                         </div>
+//                       ))}
 
-                   </div>
+//                    </div>
                    
                     
-                 </>
-                </div>
+//                  </>
+//                 </div>
+
+               <div className='w-full'>
+<>
+  {!isReviewExists && (
+    <>
+      <div className="w-full flex">
+        <Image
+          src={user?.avatar ? user.avatar.url : "https://res.cloudinary.com/dwtqcpdjr/image/upload/v1704382193/avatars/a7hnxvo23p3kpz11b1eu.avif&w=32&q=75"}
+          alt=''
+          width={50}
+          height={60}
+          className='rounded-full object-cover w-[50px] h-[50px]'
+        />
+        <div className="w-full">
+          <h5 className='pl-3 text-[20px] font-[500] dark:text-white text-black'>Give a Rating 
+            <span className='text-red-500'>*</span>
+          </h5>
+          <div className='flex w-full ml-2 pb-3'>
+            {[1, 2, 3, 4, 5].map((i) => rating >= i ? (
+              <AiFillStar
+                key={i}
+                color="rgb(246,186,0)"
+                className="mr-1 cursor-pointer"
+                size={25}
+                onClick={() => setRating(i)}
+              />
+            ) : (
+              <AiOutlineStar
+                key={i}
+                color="rgb(246,186,0)"
+                className="mr-1 cursor-pointer"
+                size={25}
+                onClick={() => setRating(i)}
+              />
+            ))}
+          </div>
+          <textarea
+            value={review}
+            onChange={(e) => setReview(e.target.value)}
+            cols={40}
+            rows={5}
+            placeholder='Write your comment...'
+            className='outline-none bg-transparent border dark:border-[#ffffff57] border-[#000] text-[#494747] dark:text-[#f4f4f4] w-[95%] 800px:w-full p-2 rounded text-[18px] font-Poppins'
+          ></textarea>
+        </div>
+      </div>
+      <div className='w-full flex justify-end'>
+        <div
+          className={`${styles.button} !w-[120px] !h-[40px] text-[18px] mt-5 ${reviewCreateLoading && 'cursor-not-allowed'}`}
+          onClick={reviewCreateLoading ? () => {} : handleReviewSubmit}
+        >
+          Submit
+        </div>
+      </div>   
+    </>
+  )}
+  <div className='w-full h-[1px] bg-[#ffffff3b]'></div>
+  <div className='w-full'>
+    {(course?.reviews && [...course.reviews].reverse())?.map((item: any, index: number) =>{
+
+     return (
+
+      <div className="w-full my-5" key={index}>
+      <div className="w-full flex">
+        <div>
+          <Image
+            src={item.user.avatar ? item.user.avatar.url : "https://res.cloudinary.com/dwtqcpdjr/image/upload/v1704382193/avatars/a7hnxvo23p3kpz11b1eu.avif&w=32&q=75"}
+            alt=''
+            width={50}
+            height={60}
+            className='rounded-full object-cover w-[50px] h-[50px]'
+          />
+        </div>
+        <div className="ml-2 text-black dark:text-[#f4f4f4]">
+          <h1 className='text-[18px]'>{item?.user.name}</h1>
+          <Ratings rating={item.rating}/>
+          <p>{item.comment}</p>
+          <small>{format(item.createdAt)}.</small>
+        </div>
+      </div>
+      {user.role === "admin" && (
+        <span
+          className={`text-black dark:text-[#ffffff83]  !ml-14 !mt-2`}
+          onClick={() => { setIsReviewReply(true), setReviewId(item._id) }}
+        >
+          Add Reply
+        </span>
+      )}
+      {isReviewReply && (
+        <div className="w-full flex relative">
+          <input
+            type="text"
+            placeholder='Enter your reply...'
+            className="block 800px:ml-12 mt-2 outline-none bg-transparent border-b dark:border-[#ffffff83] text-black dark:text-white border-[#000000] p-[5px] w-[95%]"
+            value={reply}
+            onChange={(e: any) => setReply(e.target.value)}
+          />
+          <button
+            type='submit'
+            className={`absolute right-0 bottom-1 text-black dark:text-white`}
+            onClick={handleReviewReplySubmit}
+          >
+            Submit
+          </button>
+        </div>
+      )}
+      {item.commentReplies.map((i: any, index: number) => (
+        <div className='w-full flex 800px:ml-16 my-5' key={index}>
+          <div className='w-[50px] h-[50px]'>
+            <Image
+              src={i.user.avatar ? i.user.avatar.url : "https://res.cloudinary.com/dwtqcpdjr/image/upload/v1704382193/avatars/a7hnxvo23p3kpz11b1eu.avif&w=32&q=75"}
+              alt=''
+              width={50}
+              height={60}
+              className='rounded-full object-cover w-[50px] h-[50px]'
+            />
+          </div>
+          <div className='pl-3 dark:text-white text-black'>
+            <div className="flex w-full items-center">
+              <h5 className='text-[20px]'>{i.user.name}</h5>
+              {i.user.role === "admin" && <VscVerifiedFilled className="text-[20px] ml-1 text-[#4747f9]"/>}
+            </div>
+            <p>{i.comment}</p>
+            <small className='dark:text-[#ffffff83] text-black'>{format(i.createdAt)}.</small>
+          </div>
+        </div>
+      ))}
+    </div>
+     )
+
+    })}
+  </div>
+</>
+ </div>
             )
         }
 
@@ -485,7 +619,7 @@ const CommentItem = ({data, activeVideo, answer,setAnswer,setQuestionId, handleA
                     <>
                     {item.questionReplies.map((item:any)=>(
                         // eslint-disable-next-line react/jsx-key
-                        <div className=' w-full flex 800px:ml-16 my-5 text-black dark:text-white'>
+                        <div className=' w-full flex 800px:ml-16 my-5 text-black dark:text-white' key={item._id}>
                             <div>
                             <Image
                 src={item.user.avatar ? item.user.avatar.url  : "https%3A%2F%2Fres.cloudinary.com%2Fdwtqcpdjr%2Fimage%2Fupload%2Fv1704382193%2Favatars%2Fa7hnxvo23p3kpz11b1eu.avif&w=32&q=75"} alt='' width={50} height={60}

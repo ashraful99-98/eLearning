@@ -77,7 +77,7 @@ const DeshboardWidgets:FC<Props> = ({open}) => {
           setOrderComparePrecentenge({
             currentMonth : ordersCurrentMonth,
             previousMonth : ordersPrviouseMonth,
-            percentChange : ordersPrecentChange,
+            orderPercentChange : ordersPrecentChange,
           });
 
         }
@@ -112,13 +112,13 @@ const DeshboardWidgets:FC<Props> = ({open}) => {
               </div>
               <div>
                 <CircularProgressWithLabel value={
-                   orderComparePrecentenge?.percentChange > 0 ? 100 : 0
+                   orderComparePrecentenge?.orderPercentChange > 0 ? 100 : 0
                 } open={open}/>
-                <h5 className='text-center pt-4'>
+                <h5 className='text-center pt-4 text-black dark:text-white'>
                   {/* {
-                    orderComparePrecentenge.percentChange > 0 ? "+" + orderComparePrecentenge.percentChange.toFixed(2) :
-                   "-" + orderComparePrecentenge.percentChange.toFixed(2)
-                  } */}
+                    orderComparePrecentenge.orderPercentChange > 0 ? '+' + orderComparePrecentenge.orderPercentChange.toFixed(2) :
+                   '-' + orderComparePrecentenge.orderPercentChange.toFixed(2)
+                  }% */}
                   100 %
                 </h5>
               </div>
@@ -131,12 +131,11 @@ const DeshboardWidgets:FC<Props> = ({open}) => {
                 <div className='flex items-center p-3 justify-between'>
                   <div className=''>
                     <PiUsersFourLight className="dark:text-[#39a37a] text-black text-[30px]"/>
-
-                    <h5 className='pt-2 font-Poppins dark:text-[#39a37a] text-black text-[20px]'>
-                  {
+                <h5 className='pt-2 font-Poppins dark:text-[#fff] text-black text-[20px]'>
+                {
                     userComparePrecentenge?.currentMonth
                   }
-
+              
                 </h5>
                     <h5 className='py-2 font-Poppins dark:text-[#39a37a] text-black text-[20px] font-[400]'>
                   New Users
@@ -148,11 +147,12 @@ const DeshboardWidgets:FC<Props> = ({open}) => {
                     userComparePrecentenge?.percentChange > 0 ? 100 : 0
                   } open={open}/>
 
-                  <h5 className='text-center pt-4'>
+                  <h5 className='text-center pt-4 text-black dark:text-white'>
                     {
                       userComparePrecentenge?.percentChange > 0 
                       ? '+' + userComparePrecentenge?.percentChange.toFixed(2)  : '-' + userComparePrecentenge?.percentChange.toFixed(2)
                     } %
+                    {/* 100% */}
                   </h5>
 
                   </div>

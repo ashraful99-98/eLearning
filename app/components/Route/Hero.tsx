@@ -4,8 +4,13 @@ import React,{FC, useState} from "react";
 import { BiSearch } from "react-icons/bi";
 import './Hero.css';
 import { useGetHeroDataQuery } from "@/redux/features/layout/layoutApi";
-import Loader from "../Loader/Loader";
+// import Loader from "../Loader/Loader";
 import { useRouter } from "next/navigation";
+import dynamic from "next/dynamic";
+
+const Loader = dynamic(() => import("../Loader/Loader"), {
+    ssr: false,
+  });
 
 type Props={};
 

@@ -3,12 +3,18 @@ import React from 'react'
 import AdminSidebar from '../../components/Admin/sidebar/AdminSidebar';
 import Heading from '@/app/utils/Heading';
 import CreateCourse from '../../components/Admin/Course/CreateCourse';
-import DashboardHeader from '@/app/components/Admin/DashboardHeader';
+import DashboardHero from '@/app/components/Admin/DashboardHero';
 type Props = {
   
+  title:string;
+  to:string;
+  icon: any;
+  selected:any;
+  setSelected:any;
 }
 
-const page = (props: Props) => {
+const Page = ({title, to, icon, selected, setSelected}: Props) => {
+
   return (
     <div>
       
@@ -19,13 +25,14 @@ const page = (props: Props) => {
         />
         <div className='flex'>
             <div className='1500px:w-[15%] w-1/5'>
-                <AdminSidebar/>
+               
+         <AdminSidebar title={title} to={to} icon={icon} selected={selected} setSelected={setSelected} />
 
 
             </div>
 
             <div className='w-[83%]'>
-                <DashboardHeader />
+                <DashboardHero/>
                 <CreateCourse/>
 
             </div>
@@ -34,4 +41,4 @@ const page = (props: Props) => {
     </div>
   )
 }
-export default page;
+export default Page;

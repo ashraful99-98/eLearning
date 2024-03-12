@@ -7,7 +7,7 @@ import About from "./About";
 import Footer from '../components/Footer/Footer'
 type Props = {}
 
-const page = (props: Props) => {
+const Page = (props: Props) => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const [open, setOpen] = useState(false);
     // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -36,4 +36,4 @@ const page = (props: Props) => {
     </div>
   )
 }
-export default page;
+export default Page;

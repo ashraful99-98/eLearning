@@ -34,6 +34,7 @@ const DashboardHeader:FC<Props> = ({open, setOpen}) => {
         // )
     );
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     const playerNotificationSound = ()=>{
         audio.play();
     };
@@ -48,7 +49,7 @@ const DashboardHeader:FC<Props> = ({open, setOpen}) => {
          }
          audio.load();
         }
-    },[data, isSuccess]);
+    },[audio, data, isSuccess, refetch]);
 
     useEffect(()=>{
 
@@ -56,7 +57,7 @@ const DashboardHeader:FC<Props> = ({open, setOpen}) => {
             refetch();
             playerNotificationSound();
         })
-    },[]);
+    },[playerNotificationSound, refetch]);
 
     const handleNotificationStatusChange = async(id:string)=>{
         await updateNotificationStatus(id);
@@ -85,7 +86,7 @@ const DashboardHeader:FC<Props> = ({open, setOpen}) => {
                         {
                             notifications && notifications.map((item:any,index:number)=>(
                                 // eslint-disable-next-line react/jsx-key
-                                <div className='dark:bg-[2d3a4ea1] bg-[#00000013] font-Poppins border-b dark:border-b-[#ffffff47] border-b-[#00000f] py-1.5' >
+                                <div className='dark:bg-[2d3a4ea1] bg-[#00000013] font-Poppins border-b dark:border-b-[#ffffff47] border-b-[#00000f] py-1.5' key={index} >
                                 <div className=' w-full flex items-center  justify-between p-2 mb-2'>
                                     <p className='text-black dark:text-white cursor-pointer'>
                                        {item.title}

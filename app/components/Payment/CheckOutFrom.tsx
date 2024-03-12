@@ -64,15 +64,15 @@ const CheckOutFrom = ({setOpen,data,user}: Props) => {
             redirect(`/course-access/${data._id}`);
         }
     
-        if (isSuccess) {
-            toast.success("Payment done successfully");
-        }
+        // if (isSuccess) {
+        //     toast.success("Payment done successfully");
+        // }
     
         // if (error && "data" in error) {
         //     const errorMessage = error as any;
         //     toast.error(errorMessage.data.message);
         // }
-    }, [orderData, isSuccess]);
+    }, [orderData]);
     
 
   return (

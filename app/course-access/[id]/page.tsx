@@ -9,7 +9,7 @@ type Props = {
     params:any;
 }
 
-const page = ({params}: Props) => {
+const Page = ({params}: Props) => {
     const id = params.id;
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const {isLoading, error, data} = useLoadUserQuery(undefined,{});
@@ -48,4 +48,4 @@ const page = ({params}: Props) => {
     </>
   )
 }
-export default page;
+export default Page;

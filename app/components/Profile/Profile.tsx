@@ -23,7 +23,7 @@ const Profile:FC<Props> = ({user}) => {
     });
     const {data, isLoading} = useGetUsersAllCoursesQuery(undefined,{})
 
-    const logoutHandler =async () => {
+    const logoutHandler = async () => {
         await signOut();
         setLogout(true);
     }
@@ -46,7 +46,7 @@ const Profile:FC<Props> = ({user}) => {
             setCourses(filteredCourses);
         }
  
-    },[data]);
+    },[data, user.courses]);
 
 
   return (

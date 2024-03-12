@@ -8,9 +8,17 @@ import OrderAnalytics from '@/app/components/Admin/Analytics/OrderAnalytics'
 
 
 
-type Props = {}
+type Props = {
+  
+  title:string;
+  to:string;
+  icon: any;
+  selected:any;
+  setSelected:any;
+}
 
-const page = (props: Props) => {
+
+const Page = ({title, to, icon, selected, setSelected}: Props) => {
   return (
     <div>
     <AdminProtected>
@@ -23,10 +31,11 @@ const page = (props: Props) => {
      <div className='flex h-screen'>
          <div className='1500px:w-[16%] w-1/5'>
 
-             <AdminSidebar/>
+            
+         <AdminSidebar title={title} to={to} icon={icon} selected={selected} setSelected={setSelected} />
 
          </div>
-         <div className='w-[85%] ml-8 '>
+         <div className='w-[85%]  ml-8 '>
               
               <DashboardHero/>
               
@@ -41,4 +50,4 @@ const page = (props: Props) => {
  </div>
   )
 }
-export default page;
+export default Page;

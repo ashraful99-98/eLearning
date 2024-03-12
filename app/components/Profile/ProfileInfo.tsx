@@ -5,7 +5,6 @@ import {AiOutlineCamera} from 'react-icons/ai';
 import { styles } from '../Styles/styles';
 import { useEditProfileMutation, useUpdateAvatarMutation } from '@/redux/features/user/userApi';
 import { useLoadUserQuery } from '@/redux/features/api/apiSlice';
-import { skip } from 'node:test';
 import toast from 'react-hot-toast';
 type Props = {
     avatar: string | null;
@@ -35,7 +34,6 @@ const ProfileInfo:FC<Props> = ({avatar,user}) => {
             updateAvatar(
                 avatar 
                 );
-
         }
        };
 
